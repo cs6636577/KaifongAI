@@ -3,24 +3,31 @@ import logo from '../public/logo/NT_Logo.png';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-accent flex items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
-      <div className="w-full max-w-5xl rounded-lg bg-surface px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12 min-h-[600px]">
-        <div>
+    <div className="h-screen bg-accent flex items-center justify-center px-4 py-6">
+      
+      <div className="w-full max-w-5xl rounded-3xl bg-surface p-6 sm:p-8 lg:p-10 h-[600px]">
+        
+        <div className="flex h-full flex-col lg:flex-row">
           <aside className="flex w-full lg:w-5/12 items-center justify-center">
-            <div className="flex flex-col items-center justify-center">
-              <Image
-                src={logo}
-                alt="NT Logo"
-                className="w-full sm:w-52 lg:w-64 h-auto"
-                priority
-              />
-            </div>
+            <Image
+              src={logo}
+              alt="NT Logo"
+              className="w-40 sm:w-52 lg:w-72 xl:w-80 h-auto"
+              priority
+            />
           </aside>
+
+          <main className="flex w-full lg:w-7/12 flex-col justify-center items-center lg:items-start text-center lg:text-left">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-6">
+              Welcome to Kaifong!
+            </h1>
+            <p className="text-base sm:text-lg">
+              Your one-stop solution for community management.
+            </p>
+          </main>
+
         </div>
-        <main className='flex flex-col items-end justify-center h-full w-2/2'>
-          <h1 className="text-4xl font-bold text-center mb-6">Welcome to Kaifong!</h1>
-          <p className="text-lg text-center mb-4">Your one-stop solution for community management.</p>
-        </main>
+
       </div>
     </div>
   );
