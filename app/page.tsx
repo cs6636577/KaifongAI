@@ -12,18 +12,15 @@ export default function Home() {
             <Image
               src={logo}
               alt="NT Logo"
-              className="w-40 sm:w-52 lg:w-72 xl:w-80 h-auto"
+              className="w-40 sm:w-52 lg:w-72 xl:w-80 h-auto drop-shadow-lg"
               priority
             />
           </aside>
 
           <main className="flex w-full lg:w-7/12 flex-col justify-center items-center lg:items-start text-center lg:text-left">
-            <h1 className="text-3xl sm:text-4xl font-bold mb-6">
-              Welcome to Kaifong!
+            <h1 className="text-3xl sm:text-4xl font-bold mb-6 text-foreground3">
+              เข้าสู่ระบบ
             </h1>
-            <p className="text-base sm:text-lg">
-              Your one-stop solution for community management.
-            </p>
           </main>
 
         </div>

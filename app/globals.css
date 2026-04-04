@@ -9,6 +9,7 @@
   --foreground: #161B29;
   --foreground2: #4D4632;
   --muted-foreground: #575E72;
+  --foreground3: #3D4457;
   
 
   /* brand */
@@ -35,6 +36,7 @@
   --foreground: #161B29;
   --foreground2: #4D4632;
   --muted-foreground: #575E72;
+  --foreground3: #3D4457;
   
 
   /* brand */
@@ -85,6 +87,7 @@
   --font-mono: var(--font-geist-mono);
   --color-accent: var(--accent);
   --color-surface: var(--surface);
+  --color-foreground3: var(--foreground3);
 }
 
 @media (prefers-color-scheme: dark) {
