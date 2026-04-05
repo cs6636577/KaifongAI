@@ -1,7 +1,9 @@
+import Navbar from "../../components/ui/Admin_director/Navbar";
+
 export default function Test() {
     return (
-        <div className="h-screen bg-background flex items-center justify-center px-4 py-6">
-            TEST page
+        <div className="h-full w-full bg-surface flex items-start justify-start">
+            <Navbar />
         </div>
     )
 }
