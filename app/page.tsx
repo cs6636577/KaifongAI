@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import logo from '../public/logo/NT_Logo.png';
 import kaifong from '../public/logo/Kaifong_logo.png';
+import Link from 'next/link';
 
 export default function Home() {
+
   return (
     <div className="h-screen bg-accent flex items-center justify-center px-4 py-6">
       
@@ -49,9 +51,11 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-4">
-                  <button className="w-40 bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline transition-colors" type="button">
-                    เข้าสู่ระบบ
-                  </button>
+                  <Link href="/test" className="cursor-pointer w-full sm:w-auto focus:outline-none focus:shadow-outline">
+                    <button className="w-40 bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline transition-colors cursor-pointer" type="button">
+                        เข้าสู่ระบบ
+                    </button>
+                  </Link>
                 </div>
               </form>
             </main>
