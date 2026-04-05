@@ -6,8 +6,8 @@ interface MyComponentProps {
 
 export default function Layout({children}: MyComponentProps) {
   return (
-    <>test
+    <div className="admin-theme min-h-screen bg-background">
       {children}
-    </>
+    </div>
   );
 }
