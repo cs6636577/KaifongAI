@@ -1,3 +1,4 @@
+//สำหรับtable ในหน้าadmin เช่น dashboard หรืออื่นๆที่คล้ายกัน
 type Column = {
   key: string;
   title: string;
