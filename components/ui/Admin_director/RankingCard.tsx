@@ -1,55 +1,35 @@
+//สำหรับหน้า ที่มี การ์ดจัดอันดับ เช่น dashboard
 interface SummaryCardProps {
-  key: number ;
+  rank: number;
+  icon: string;
   title: string;
-  value: number | string;
-  subvalue?: string | number;
-  color?: string;
+  value: string | number;
+  subvalue: string | number;
 
-  trend?: "up" | "down";
-  change?: number;
-  percent?: string;
 }
 
-export default function RankingCard({title,value,subvalue,color,trend,change,percent}: SummaryCardProps) {
+export default function RankingCard({ rank, icon, title, value, subvalue }: SummaryCardProps) {
   return (
-    <div
-      className="bg-white rounded-lg border-l-4 p-5 shadow-sm"
-      style={{ borderColor: color }}
-    >
-      {/* title */}
-      <p className="text-xs text-[#575E72] mb-1">{title}</p>
-
-      {/* value row */}
-      <div className="flex items-end gap-2">
-        <span className="text-3xl font-bold text-[#161B29]">
-          {value}
+    <div className="dashboard-ranking w-full rounded-xl border border-border p-5">
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-xs font-medium bg-[#FFD100]/20 text-[#6F5A00] px-3 py-1 rounded-full">
+          อันดับ {rank}
         </span>
-
-        {/* trend */}
-        {change !== undefined && (
-          <span
-            className={`flex items-center text-xs font-medium ${
-              trend === "up" ? "text-green-600" : "text-red-500"
-            }`}
-          >
-            {trend === "up" ? "▲" : "▼"} {change}%
-          </span>
-        )}
-
-        {/* sub */}
-        {subvalue && (
-          <span className="text-xs text-gray-400">
-            {subvalue}
-          </span>
-        )}
-
-        {/* percent */}
-        {percent && (
-          <span className="text-sm font-semibold text-green-600">
-            {percent}
-          </span>
-        )}
+        <div className="text-[var(--rank-icon)]">{icon}</div>
       </div>
-    </div>
-  );
+      <h3 className="font-bold text-[var(--primary)] mb-1">{title}</h3>
+      <p className="text-xs text-[var(--muted-foreground)] mb-4">{value}</p>
+      <div className="flex items-center justify-between text-xs text-muted-foreground2 mb-1">
+        <span className=" text-[var(--rank-foreground2)]">ความคืบหน้า</span>
+        <span className=" text-[var(--rank-foreground2)]">{subvalue}%</span>
+      </div>
+      <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+        <div
+          className={`h-full bg-[var(--rank-foreground2)] rounded-full transition-all`}
+          style={{ width: `${subvalue}%` }}
+        />
+      </div>
+      </div>
+
+      );
 }

@@ -1,5 +1,6 @@
 // lib/summaryDashboard.ts
 import { DashboardData } from "../services/DataProvider";
+//สำหรับส่งค่าไปที่ front เพื่อแสดงผล
 interface SummaryItem{
         title: string ;
         value: number ;
@@ -72,7 +73,7 @@ export function summaryAvgCloseTime(data: DashboardData): SummaryItem{
         .reduce((a, b) => a + b, 0) / resolvedCases.length / (1000 * 60 * 60) // ชั่วโมง
     : 0;
   const avgCloseTimeInDays = avgCloseTime / 24;
-  return { title: "เวลาเฉลี่ยในการปิดงาน (ชม.)", value: Number(avgCloseTimeInDays.toFixed(2)), subvalue: "วัน" };
+  return { title: "เวลาเฉลี่ยในการปิดงาน", value: Number(avgCloseTimeInDays.toFixed(2)), subvalue: "วัน" };
 }
 
 //เจ้าหน้าที่ออนไลน์
@@ -81,7 +82,7 @@ export function summaryOnlineTechnicians(data: DashboardData): SummaryItem{
   return { title: "เจ้าหน้าที่ออนไลน์", value:total, subvalue: "คน" };
 }
 
-
+//อันดับปัญหา 
 export function getRanking(data: DashboardData) {
   const problemCount: Record<number, number> = {};
   data.cases.forEach(c => {
@@ -92,6 +93,7 @@ export function getRanking(data: DashboardData) {
     .map(([pid, count]) => {
       const problem = data.problems.find(p => p.id === Number(pid));
       return {
+        id: Number(pid),
         problemName: problem?.name || "ไม่ทราบ",
         description: problem?.description || "",
         count
@@ -102,10 +104,11 @@ export function getRanking(data: DashboardData) {
 
   const totalCases = data.cases.length;
   return rankingArray.map((p, idx) => ({
-    rank: idx + 1,
-    problemName: p.problemName,
-    description: p.description,
-    percent: Math.round((p.count / totalCases) * 100)
+    key: idx + 1,
+    id: p.id,
+    title: p.problemName,
+    value: p.description,
+    subvalue: Math.round((p.count / totalCases) * 100)
   }));
 }
 
