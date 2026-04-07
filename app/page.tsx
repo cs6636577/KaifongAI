@@ -51,11 +51,12 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-4">
-                  <Link href="/test" className="cursor-pointer w-full sm:w-auto focus:outline-none focus:shadow-outline">
-                    <button className="w-40 bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline transition-colors cursor-pointer" type="button">
-                        เข้าสู่ระบบ
-                    </button>
-                  </Link>
+                <Link
+                  href="/admin/dashboard"
+                  className="inline-flex w-40 items-center justify-center rounded-full bg-yellow-400 px-6 py-3 font-bold text-gray-800 transition-colors hover:bg-yellow-500"
+                >
+                  เข้าสู่ระบบ
+                </Link>
                 </div>
               </form>
             </main>

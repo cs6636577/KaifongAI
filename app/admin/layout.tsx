@@ -1,14 +1,15 @@
-import { ReactNode } from 'react';
-import Navbar from "../../components/ui/Admin_director/Navbar";
-interface MyComponentProps {
-  children: ReactNode;
-}
+import type { Metadata } from "next";
+import AdminShell from "../adminshell";
 
-export default function Layout({children}: MyComponentProps) {
-  return (
-    <div className="admin-theme min-h-screen bg-background">
-      <Navbar/>
-      {children}
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Admin",
+  description: "Admin dashboard",
+};
+
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <AdminShell>{children}</AdminShell>;
 }
