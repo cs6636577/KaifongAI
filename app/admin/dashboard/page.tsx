@@ -24,7 +24,7 @@ interface SummaryData {
 function Dashboard() {
   const [summary, setSummary] = useState<SummaryData | null>(null);;
 
-  //test datatable
+  //test datatable 
   const columns = [
     { key: "id", title: "รหัสรายการ" },
     { key: "problems", title: "หัวข้อร้องเรียน" },
@@ -182,7 +182,6 @@ function Dashboard() {
 
         {/* table */}
         <div className=" rounded-xl border border-border overflow-hidden mx-12">
-
           {/* header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-[#EAEDFF]">
             <h2 className="font-bold text-foreground text-lg">
@@ -192,7 +191,6 @@ function Dashboard() {
               ดูทั้งหมด
             </button>
           </div>
-
           {/* table */}
           <div className="overflow-x-auto">
             <DataTable columns={columns} data={data} theadClassName="text-[#64748B] text-sm" className="border-b  border-[#EAEDFF]"/>

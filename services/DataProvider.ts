@@ -57,14 +57,17 @@ export async function getData(): Promise<DashboardData> {
       location_url: c.location_url,
       picture_url: c.picture_url,
     })),
+
     users: rawData.users.map((u: any) => ({
       id: u.id,
       created_at: u.datetime, // map datetime -> created_at
     })),
+
     technicians: rawData.technicians.map((t: any) => ({
       id: t.id,
       status: t.status === "approved" ? "approved" : "offline",
     })),
+    
     problems: rawData.problems,
   };
 }

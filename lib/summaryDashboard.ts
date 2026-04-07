@@ -34,7 +34,7 @@ export function summaryMonth(data: DashboardData): SummaryItem{
 
   const total = data.cases.filter(c => c.datetime.slice(0, 7) === currentMonth).length;
   const prev = data.cases.filter(c => c.datetime.slice(0, 7) === lastMonth).length;
-
+  // % เพิ่มขึ้น = (เดือนนี้ - เดือนก่อน) / เดือนก่อน * 100
   const percent = prev > 0 ? ((total - prev) / prev * 100).toFixed(2) : "100";
 
   return { title: "เรื่องที่ร้องเรียนเดือนนี้", value: total , subvalue: percent + "%", color:"#FFD100"}; 
@@ -70,10 +70,9 @@ export function summaryAvgCloseTime(data: DashboardData): SummaryItem{
           const userCreated = data.users.find(u => u.id === c.user_id)?.created_at || c.datetime;
           return new Date(c.datetime).getTime() - new Date(userCreated).getTime();
         })
-        .reduce((a, b) => a + b, 0) / resolvedCases.length / (1000 * 60 * 60) // ชั่วโมง
+        .reduce((a, b) => a + b, 0) / resolvedCases.length / (1000 * 60 * 60 * 24) // วัน
     : 0;
-  const avgCloseTimeInDays = avgCloseTime / 24;
-  return { title: "เวลาเฉลี่ยในการปิดงาน", value: Number(avgCloseTimeInDays.toFixed(2)), subvalue: "วัน" };
+  return { title: "เวลาเฉลี่ยในการปิดงาน", value: Number(avgCloseTime.toFixed(2)), subvalue: "วัน" };
 }
 
 //เจ้าหน้าที่ออนไลน์
@@ -94,7 +93,7 @@ export function getRanking(data: DashboardData) {
       const problem = data.problems.find(p => p.id === Number(pid));
       return {
         id: Number(pid),
-        problemName: problem?.name || "ไม่ทราบ",
+        problemName: problem?.name || "",
         description: problem?.description || "",
         count
       };
