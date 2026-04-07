@@ -1,6 +1,21 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+@theme {
+  --color-accent: var(--accent);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-foreground3: var(--foreground3);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
 :root {
     /* base */
   --background: #F1F1F2;
@@ -64,6 +79,7 @@
   --foreground: #161B29;
   --foreground2: #4D4632;
   --muted-foreground: #575E72;
+  --foreground3: #3D4457;
   
 
   /* brand */
@@ -79,23 +95,6 @@
   --success: #10B981;
   --warning: #D97706;
   --danger: #E11D48;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-accent: var(--accent);
-  --color-surface: var(--surface);
-  --color-foreground3: var(--foreground3);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
