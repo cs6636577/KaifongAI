@@ -5,11 +5,15 @@ import SummaryCard2 from "../../../components/ui/Admin_director/SummaryCard2";
 import RankingCard from "@/components/ui/Admin_director/RankingCard";
 import DataTable from "@/components/ui/Admin_director/DataTable";
 import type { ComponentType, SVGProps } from 'react'
-import { ClockIcon, ClipboardDocumentListIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { ClockIcon, ClipboardDocumentListIcon, UsersIcon, LightBulbIcon, TrashIcon, FunnelIcon } from '@heroicons/react/24/outline';
+import { BsTree } from "react-icons/bs";
+import { IoWaterOutline } from "react-icons/io5";
+import { FaTools } from "react-icons/fa";
+
 //สำหรับใส่ค่าส่งไปที่ components card ต่างๆ อิงส่วน ui และเนื้อหาจากหน้า // lib/summaryDashboard.ts ที่เป็นส่วนคำนวณ
 interface SummaryItem {
   id: number;
-  icon?: ComponentType<SVGProps<SVGSVGElement>>;
+  icon?: ComponentType<SVGProps<SVGSVGElement>> | string;
   title: string;
   value: number | string;
   subvalue: number;
@@ -126,13 +130,13 @@ function Dashboard() {
   }
 
   {/*รับค่าidของ ploblems มาแมพกับ icon*/ }
-  const getConfigRanking: Record<number, string> = {
-    1: "ไฟฟ้า",
-    2: "ถนน",
-    3: "น้ำประปา",
-    4: "ขยะ",
-    5: "ต้นไม้",
-    6: "ท่อระบายน้ำ"
+  const getConfigRanking: Record<number, ComponentType<SVGProps<SVGSVGElement>> | string> = {
+    1: LightBulbIcon , //ไฟฟ้า
+    2: FaTools, //ถนน
+    3: IoWaterOutline, //น้ำประปา
+    4: TrashIcon, //ขยะ
+    5: BsTree, //ต้นไม้
+    6: FunnelIcon  //ท่อระบายน้ำ
 
   }
 
@@ -175,6 +179,7 @@ function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mx-12  mb-8">
           {summary?.RankingCards.map((item, index) => (
             <RankingCard
+              key = {index}
               rank={index + 1}
               icon={getConfigRanking[item.id]}
               title={item.title}
@@ -185,9 +190,9 @@ function Dashboard() {
         </div>
 
         {/* table */}
-        <div className=" rounded-xl border border-border overflow-hidden mx-12">
+        <div className=" rounded-xl border border-[#EAEDFF] overflow-hidden mx-12 ">
           {/* header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-[#EAEDFF]">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-[#EAEDFF]  bg-[#EAEDFF]">
             <h2 className="font-bold text-foreground text-lg">
               รายการร้องเรียนล่าสุด
             </h2>
