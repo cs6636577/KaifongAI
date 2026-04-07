@@ -64,14 +64,29 @@ export function summaryWeek(data: DashboardData): SummaryItem {
 //เวลาเฉลี่ยในการปิดงาน (วัน)
 export function summaryAvgCloseTime(data: DashboardData): SummaryItem{
   const resolvedCases = data.cases.filter(c => c.status === "resolved");
-  const avgCloseTime = resolvedCases.length > 0
-    ? resolvedCases
-        .map(c => {
-          const userCreated = data.users.find(u => u.id === c.user_id)?.created_at || c.datetime;
-          return new Date(c.datetime).getTime() - new Date(userCreated).getTime();
-        })
-        .reduce((a, b) => a + b, 0) / resolvedCases.length / (1000 * 60 * 60 * 24) // วัน
+ const times = resolvedCases
+  .map(c => {
+    const logs = data.case_status_logs
+      .filter(l => l.case_id === c.id)
+      .sort((a, b) => new Date(a.changed_at).getTime() - new Date(b.changed_at).getTime());
+
+    const pending = logs.find(l => l.status === "pending");
+    const resolved = [...logs].reverse().find(l => l.status === "resolved");
+
+    if (!pending || !resolved) return null; 
+
+    return new Date(resolved.changed_at).getTime() - new Date(pending.changed_at).getTime();
+  })
+  .filter(v => v !== null); 
+
+  const avgCloseTime = times.length > 0
+    ? times.reduce((a, b) => a + b, 0) / times.length / (1000 * 60 * 60 * 24)
     : 0;
+  console.log(data.case_status_logs[0]);
+  console.log(Number(avgCloseTime.toFixed(2)));
+  console.log(avgCloseTime);
+  
+
   return { title: "เวลาเฉลี่ยในการปิดงาน", value: Number(avgCloseTime.toFixed(2)), subvalue: "วัน" };
 }
 

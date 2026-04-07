@@ -31,11 +31,19 @@ export interface Problem {
   description: string;
 }
 
+export interface case_status_log{
+  id: number,
+  case_id: number,
+  status: string,
+  changed_at: string;
+}
+
 export interface DashboardData {
   cases: Case[];
   users: User[];
   technicians: Technician[];
   problems: Problem[];
+  case_status_logs: case_status_log[]; 
 }
 
 export async function getData(): Promise<DashboardData> {
@@ -69,6 +77,12 @@ export async function getData(): Promise<DashboardData> {
     })),
     
     problems: rawData.problems,
+    case_status_logs:  rawData.case_status_logs.map((cl: any) => ({
+      id: cl.id,
+      case_id: cl.case_id,
+      status: cl.status,
+      changed_at: cl.changed_at, 
+    })),
   };
 }
 // ต่อไป ถ้าเปลี่ยนเป็น DB แค่แก้ getData() ให้ query DB แทน

@@ -1,21 +1,29 @@
 //สำหรับหน้า ที่มี การ์ดจัดอันดับ เช่น dashboard
+import type { ComponentType, SVGProps } from 'react'
 interface SummaryCardProps {
+  key: number ;
   rank: number;
-  icon: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>> | string;
   title: string;
   value: string | number;
   subvalue: string | number;
 
 }
 
-export default function RankingCard({ rank, icon, title, value, subvalue }: SummaryCardProps) {
+export default function RankingCard({ rank, icon : Icon, title, value, subvalue }: SummaryCardProps) {
   return (
-    <div className="dashboard-ranking w-full rounded-xl border border-border p-5">
+    <div className="dashboard-ranking w-full rounded-xl border border-[#D1C6AB]/20 p-5">
       <div className="flex items-center justify-between mb-3">
         <span className="text-xs font-medium bg-[#FFD100]/20 text-[#6F5A00] px-3 py-1 rounded-full">
           อันดับ {rank}
         </span>
-        <div className="text-[var(--rank-icon)]">{icon}</div>
+        
+        {typeof Icon === "string" ? ( //เผื่อใช้ รูป svg
+        <img src={Icon} alt={title} className="w-6 h-6" />
+        ) : Icon ? (
+          <Icon className="w-6 h-6 text-[#CBD5E1] stroke-[1.75]" />
+        ) : null}
+
       </div>
       <h3 className="font-bold text-[var(--primary)] mb-1">{title}</h3>
       <p className="text-xs text-[var(--muted-foreground)] mb-4">{value}</p>
