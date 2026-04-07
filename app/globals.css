@@ -5,10 +5,16 @@
   --foreground: #171717;
 }
 
+.admin-theme{
+  /* base */
+  --background: #FFFFFF;
+}
+
 @theme {
   --color-accent: var(--accent);
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface2: var(--surface2);
   --color-foreground: var(--foreground);
   --color-foreground3: var(--foreground3);
   --color-muted-foreground: var(--muted-foreground);
@@ -22,8 +28,9 @@
 
 :root {
     /* base */
-  --background: #ffffff;
+  --background: #FFFFFF;
   --surface: #FFFFFF;
+  --surface2: #F5F6FA;
 
   /* text */
   --foreground: #161B29;
@@ -90,6 +97,7 @@
   /* base */
   --background: #F1F1F2;
   --surface: #FFFFFF;
+  --surface2: #F5F6FA;
 
   /* text */
   --foreground: #161B29;
