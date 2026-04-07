@@ -8,6 +8,7 @@
 .admin-theme{
   /* base */
   --background: #FFFFFF;
+}
 
 @theme {
   --color-accent: var(--accent);
