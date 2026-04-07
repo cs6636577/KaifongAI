@@ -9,7 +9,7 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
 
 
     return (
-        <div className={`h-16 bg-secondary flex items-center justify-between px-6 shadow-md transition-all duration-300 ${
+        <div className={`sticky z-30 h-16 bg-secondary flex items-center justify-between px-6 shadow-md transition-all duration-300 ${
                 isOpen ? "ml-64 w-[calc(100%-16rem)]" : "w-full"
             }`}>
             <span className="flex items-center gap-2">

@@ -21,7 +21,6 @@ export default function Test() {
                     isOpen ? "ml-64" : "ml-0"
                 }`}
             >
-                เนื้อหาหลัก
             </main>
         </div>
     )
