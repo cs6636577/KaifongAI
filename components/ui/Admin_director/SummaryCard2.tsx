@@ -1,6 +1,7 @@
-//สำหรับcardที่มีส่วนคล้าบกัย การ์ดส่วนที่ของหน้า dashboard
+//สำหรับcardที่มีส่วนคล้าบกัย การ์ดส่วนที่2ของหน้า dashboard
+import type { ComponentType, SVGProps } from 'react'
 interface SummaryCardProps {
-  icon?: string;
+  icon?: ComponentType<SVGProps<SVGSVGElement>>;
   title: string;
   value: number | string;
   subvalue?: string | number;
@@ -8,7 +9,7 @@ interface SummaryCardProps {
 
 }
 
-export default function SummaryCard2({icon,title,value,subvalue,color}: SummaryCardProps) {
+export default function SummaryCard2({icon: Icon,title,value,subvalue,color}: SummaryCardProps) {
   return (
     <div
       className="bg-white rounded-xl  shadow-sm flex border-[#D9D9D9]  gap-x-5 p-6"
@@ -16,7 +17,7 @@ export default function SummaryCard2({icon,title,value,subvalue,color}: SummaryC
     
       {/*bg+icon*/}
       <div className="size-14 rounded-full bg-muted flex items-center justify-center shrink-0 " style={{ backgroundColor: color}}>
-                {icon}
+                {Icon && <Icon className="w-6 h-6 text-[#5D6478] stroke-[1.75]" />}
       </div>
       <div className="column">
       {/* title */}

@@ -4,10 +4,12 @@ import SummaryCard from "../../../components/ui/Admin_director/SummaryCard";
 import SummaryCard2 from "../../../components/ui/Admin_director/SummaryCard2";
 import RankingCard from "@/components/ui/Admin_director/RankingCard";
 import DataTable from "@/components/ui/Admin_director/DataTable";
+import type { ComponentType, SVGProps } from 'react'
+import { ClockIcon, ClipboardDocumentListIcon, UsersIcon } from '@heroicons/react/24/outline';
 //สำหรับใส่ค่าส่งไปที่ components card ต่างๆ อิงส่วน ui และเนื้อหาจากหน้า // lib/summaryDashboard.ts ที่เป็นส่วนคำนวณ
 interface SummaryItem {
   id: number;
-  icon?: string;
+  icon?: ComponentType<SVGProps<SVGSVGElement>>;
   title: string;
   value: number | string;
   subvalue: number;
@@ -99,20 +101,22 @@ function Dashboard() {
   const getConfig = (title: string) => {
     if (title.includes("เวลา")) {
       return {
-        icon: "pic",
-        color: "#d3a468"
+        icon:  (props: React.SVGProps<SVGSVGElement>) => (
+        <ClockIcon {...props} stroke="#564500" />
+       ),
+        color: "#FFE07F"
       }
     }
     if (title.includes("ร้องเรียน")) {
       return {
-        icon: "pic",
-        color: "#adc1c7"
+        icon: ClipboardDocumentListIcon,
+        color: "#EAEDFF"
       }
     }
     if (title.includes("เจ้าหน้าที่")) {
       return {
-        icon: "pic",
-        color: "#87a0a8"
+        icon: UsersIcon,
+        color: "#EAEDFF"
       }
     }
 
