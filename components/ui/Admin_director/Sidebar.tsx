@@ -5,6 +5,7 @@ import KaifongLogo from "../../../public/logo/Kaifong_logo2.png"
 import { MdOutlineDashboard, MdSettings, MdKeyboardArrowDown } from "react-icons/md"
 import { FaRegUser } from "react-icons/fa6"
 import { TbBook2 } from "react-icons/tb"
+import { FaRegUserCircle } from "react-icons/fa"
 
 type SidebarProps = {
     isOpen: boolean
@@ -41,7 +42,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
 
             <hr className="mx-5 border-gray-200" />
 
-            <div className="p-4 text-white text-xl">
+            <div className="p-4 text-white text-lg">
                 <div className="rounded-lg px-3 py-2 hover:bg-gray-100/10 cursor-pointer transition-all duration-200">
                     <div className="flex flex-row items-center gap-3">
                         <MdOutlineDashboard size={24} />
@@ -137,6 +138,14 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                 </div>
 
                 <hr className="mx-1 border-black/20" />
+            </div>
+
+            <div className="absolute bottom-0 w-full px-8 py-6 text-white text-xl">
+                {/*บอกโรลว่าเป็นใคร*/}
+                <div className="flex flex-row items-center gap-2">
+                    <FaRegUserCircle size="2rem" />
+                    <div>ผู้ดูแลระบบ</div>
+                </div>
             </div>
         </aside>
     )
