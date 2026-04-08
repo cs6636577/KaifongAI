@@ -4,6 +4,7 @@ import SummaryCard from "../../../components/ui/Admin_director/SummaryCard";
 import SummaryCard2 from "../../../components/ui/Admin_director/SummaryCard2";
 import RankingCard from "@/components/ui/Admin_director/RankingCard";
 import DataTable from "@/components/ui/Admin_director/DataTable";
+import { Case } from "../../../services/DataProvider"; 
 import type { ComponentType, SVGProps } from 'react'
 import { ClockIcon, ClipboardDocumentListIcon, UsersIcon, LightBulbIcon, TrashIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import { BsTree } from "react-icons/bs";
@@ -28,70 +29,74 @@ interface SummaryData {
 
 
 function Dashboard() {
-  const [summary, setSummary] = useState<SummaryData | null>(null);;
+  const [summary, setSummary] = useState<SummaryData | null>(null);
+  const [tableData, setTableData] = useState<any[]>([]);
+  //ปุ่ม ดูทั้งหมด default = 3 -> ดูทั้งหมด 6 (กดเลื่อนเรื่อยๆ) -> กดปุ่มดูทั้งหมดกลับ สี thead เปลี่ยน -> default
+  const [showAll, setShowAll] = useState(false);
+  const displayedData = showAll ? tableData : tableData.slice(0, 3);
+ 
 
-  //test datatable 
+  //table 
   const columns = [
-    { key: "id", title: "รหัสรายการ" },
-    { key: "problems", title: "หัวข้อร้องเรียน" },
-    { key: "area", title: "พื้นที่" },
-    {
-      key: "status",
-      title: "สถานะ",
-      //ทดสอบ ตัวtoggle/components อื่นๆ
-      render: (value: any) => (
-        <div className={`w-10 h-5 rounded-full ${value ? "bg-yellow-400" : "bg-gray-300"
-          }`} />
-      )
-    },
-    {key:"time", title:"เวลาที่แจ้ง"}
-  ];
-  const data = [
+  { key: "id", title: "รหัสรายการ" },
+  { key: "problems", title: "หัวข้อร้องเรียน", className: "font-bold" },
+  { key: "area",title: "พื้นที่", className:"text-gray-500"
+   },
   {
-    id: "REQ-001",
-    problems: "ไฟถนนดับ",
-    area: "เขตบางเขน",
-    status: true,
-    time: "2026-04-01 08:30"
-  },
-  {
-    id: "REQ-002",
-    problems: "ขยะล้นถัง",
-    area: "เขตลาดพร้าว",
-    status: false,
-    time: "2026-04-01 09:15"
-  },
-  {
-    id: "REQ-003",
-    problems: "ท่อระบายน้ำอุดตัน หน้าหมู่บ้านรวยรื่น",
-    area: "เขตจตุจักร",
-    status: true,
-    time: "2026-04-02 10:05"
-  },
-  {
-    id: "REQ-004",
-    problems: "ถนนเป็นหลุม",
-    area: "เขตบางซื่อ",
-    status: false,
-    time: "2026-04-02 11:40"
-  },
-  {
-    id: "REQ-005",
-    problems: "น้ำประปาไม่ไหล",
-    area: "เขตดอนเมือง",
-    status: true,
-    time: "2026-04-03 07:50"
-  },
-  {
-    id: "REQ-006",
-    problems: "เสียงดังรบกวน",
-    area: "เขตหลักสี่",
-    status: false,
-    time: "2026-04-03 13:20"
-  }
-  ];
+    key: "status",
+    title: "สถานะ",
+    render: (value: string) => {
+    let bgColor = "";
+    let textColor = "";
+    let text = "";
 
-  useEffect(() => {
+    switch (value) {
+      case "pending":
+        bgColor = "bg-red-400/20";
+        textColor = "text-red-700";
+        text = "ยังไม่ได้รับเรื่อง" ;
+        break;
+      case "in_progress":
+        bgColor = "bg-yellow-400/20";
+        textColor = "text-yellow-700";
+         text = "กำลังดำเนินการ" ;
+        break;
+      case "resolved":
+        bgColor = "bg-green-400/20";
+        textColor = "text-green-700";
+         text = "แก้ไขเสร็จสิ้น" ;
+        break;
+      default:
+        bgColor = "bg-grey-400/20";
+        break;
+    }
+
+    return (
+      <div className={`w-24 h-6 flex items-center justify-center rounded-full ${bgColor} ${textColor} font-bold  text-xs`}>
+        {text}
+      </div>
+    )},
+  },
+  { key: "time", title: "เวลาที่แจ้ง" },
+  ];
+  
+   useEffect(() => {
+   fetch("/api/table")
+    .then((res) => res.json())
+    .then((cases: Case[]) => {
+      const formatted = cases.map((c) => ({
+        id: `REQ-${String(c.id).padStart(3, "0")}`, // รหัส
+        problems: c.description,             
+        area: c.location,                  
+        status: c.status,
+        time: new Date(c.datetime).toLocaleString(), // แปลงเป็น local time ? ไหม ? 
+      }));
+      setTableData(formatted);
+    })
+    .catch((err) => console.error("Fetch error:", err));
+    }, []);
+
+   useEffect(() => {
     fetch("/api/summary")
       .then(res => res.json())
       .then(data => {
@@ -99,7 +104,8 @@ function Dashboard() {
         console.log("Data parsed:", data);
       })
       .catch(err => console.error("Fetch error:", err));
-  }, []);
+   }, []);
+  
 
   {/*รับค่า title เลือกเฉพาะส่วน keyword เนื้อหาปรับเปลี่ยนได้ มาแมพกับสีและicon ของcardส่วนที่2 */ }
   const getConfig = (title: string) => {
@@ -190,19 +196,30 @@ function Dashboard() {
         </div>
 
         {/* table */}
-        <div className=" rounded-xl border border-[#EAEDFF] overflow-hidden mx-12 ">
+        <div className=" rounded-xl border border-[#F2F3FF] border-t-surface overflow-hidden mx-12 ">
           {/* header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-[#EAEDFF]  bg-[#EAEDFF]">
-            <h2 className="font-bold text-foreground text-lg">
+          <div
+            className={`flex items-center justify-between px-6 py-6 border-b ${
+              showAll
+                ? "bg-surface border-surface"
+                : "bg-[#EAEDFF] border-[#EAEDFF]"
+            }`}
+          >
+            <h2 className="font-bold text-foreground text-xl">
               รายการร้องเรียนล่าสุด
             </h2>
-            <button className="text-sm text-[#725C00] font-medium hover:underline">
-              ดูทั้งหมด
-            </button>
+            {tableData.length > 3 && (
+              <button
+                className="text-sm text-[#725C00] font-medium hover:underline"
+                onClick={() => setShowAll(!showAll)}
+              >
+                {"ดูทั้งหมด"}
+              </button>
+            )}
           </div>
           {/* table */}
           <div className="overflow-x-auto">
-            <DataTable columns={columns} data={data} theadClassName="text-[#64748B] text-sm" className="border-b  border-[#EAEDFF]"/>
+            <DataTable columns={columns} data={displayedData} theadClassName="text-[#64748B] text-xs" className="border-b text-sm border-[#EAEDFF]"/>
           </div>
 
         </div>

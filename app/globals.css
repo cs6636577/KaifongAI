@@ -5,6 +5,14 @@
   --foreground: #171717;
 }
 
+<<<<<<< HEAD
+=======
+.admin-theme{
+  /* base */
+  --background: #FFFFFF;
+}
+
+>>>>>>> 190071a4af617bb34431d9ac0f5e68effd2df738
 @theme {
   --color-accent: var(--accent);
   --color-background: var(--background);
@@ -23,7 +31,7 @@
 
 :root {
     /* base */
-  --background: #ffffff;
+  --background: #FFFFFF;
   --surface: #FFFFFF;
   --surface2: #F5F6FA;
 
