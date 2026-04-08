@@ -56,7 +56,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-background">
       <div className="w-full px-8 py-8 mx-auto">
-        <h1 className="text-3xl font-bold text-[#333847] mb-7 pl-10">
+        <h1 className="text-3xl font-bold text-[#333847] mb-7 ml-10">
           รายการคำร้องทุกข์
         </h1>
 

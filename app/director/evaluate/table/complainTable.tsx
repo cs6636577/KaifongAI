@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import DataTable from "@/components/ui/Admin_director/DataTableBase"
 import { Complaint } from "../../evaluate/table/complain"
 import PersonCell from "./personCell"
@@ -7,13 +10,14 @@ import StatusBadge from "./statusBadge"
 import StaffCell from "./staffCell"
 import ChannelBadge from "./chanelBadge"
 
-
 type Props = {
   columns: { key: string; title: string }[]
   data: Complaint[]
 }
 
 export default function ComplaintTable({ columns, data }: Props) {
+  const router = useRouter()
+
   return (
     <div className="rounded-xl border border-[#EAEDFF] overflow-hidden mx-12 mt-10">
       <div className="overflow-x-auto">
@@ -23,13 +27,17 @@ export default function ComplaintTable({ columns, data }: Props) {
         >
           <tbody className="text-sm text-secondary">
             {data.map((row) => (
-              <tr key={row.id} className="border-b border-gray-200 h-20 hover:bg-gray-50">
+              <tr
+                key={row.id}
+                onClick={() => router.push(`/director/evaluate/id/${row.id}`)}
+                
+                // onClick={()=> router.push('/director/notfound')} (`/admin/evaluate/table/${row.id}`
+                className="border-b border-gray-200 h-20 hover:bg-gray-50 cursor-pointer transition"
+              >
                 <td className="px-6 py-4 text-[#575E72]">{row.id}</td>
 
                 <td className="px-6 py-4 text-[#725C00]">
-                  <Link href={`/admin/complaints/${row.id}`} className="hover:underline">
-                    {row.problems}
-                  </Link>
+                  {row.problems}
                 </td>
 
                 <td className="px-6 py-4">
@@ -37,9 +45,7 @@ export default function ComplaintTable({ columns, data }: Props) {
                 </td>
 
                 <td className="px-6 py-4 font-bold text-secondary">
-                  <Link href={`/admin/complaints/${row.id}`} className="hover:underline">
-                    {row.title}
-                  </Link>
+                  {row.title}
                 </td>
 
                 <td className="px-6 py-4">
