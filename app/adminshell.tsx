@@ -1,32 +1,37 @@
 "use client";
 
-import { useState } from "react";
-import Navbar from "@/components/ui/Admin_director/Navbar";
-import Sidebar from "@/components/ui/Admin_director/Sidebar";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Navbar from "@/components/ui/Admin_director/AdminNavbar";
+import Sidebar from "@/components/ui/Admin_director/AdminSidebar";
 
 export default function AdminShell({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [ready, setReady] = useState(false);
 
-    return (
-        <div className="min-h-screen w-full bg-surface">
-        <Sidebar isOpen={isOpen} />
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (role !== "admin") {
+      router.replace("/");
+      return;
+    }
+    setReady(true);
+  }, [router]);
 
-        <Navbar
-            isOpen={isOpen}
-            onMenuClick={() => setIsOpen((prev) => !prev)}
-        />
+  if (!ready) return null;
 
-        <main
-            className={`pt-16 transition-all duration-300 ${
-            isOpen ? "ml-[276px]" : "ml-0"
-            }`}
-        >
-            {children}
-        </main>
-        </div>
-    );
+  return (
+    <div className="min-h-screen w-full bg-surface">
+      <Sidebar isOpen={isOpen} />
+      <Navbar isOpen={isOpen} onMenuClick={() => setIsOpen((prev) => !prev)} />
+      <main className={`pt-16 transition-all duration-300 ${isOpen ? "ml-[276px]" : "ml-0"}`}>
+        {children}
+      </main>
+    </div>
+  );
 }
