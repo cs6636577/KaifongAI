@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import SummaryCard from "../../../components/ui/Admin_director/SummaryCard";
 import SummaryCard2 from "../../../components/ui/Admin_director/SummaryCard2";
 import RankingCard from "@/components/ui/Admin_director/RankingCard";
-import DataTable from "@/components/ui/Admin_director/DataTable";
 import type { ComponentType, SVGProps } from 'react'
 import { ClockIcon, ClipboardDocumentListIcon, UsersIcon, LightBulbIcon, TrashIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import { BsTree } from "react-icons/bs";
 import { IoWaterOutline } from "react-icons/io5";
 import { FaTools } from "react-icons/fa";
+import DataTable from "@/components/ui/Admin_director/DataTableBase"
 
 //สำหรับใส่ค่าส่งไปที่ components card ต่างๆ อิงส่วน ui และเนื้อหาจากหน้า // lib/summaryDashboard.ts ที่เป็นส่วนคำนวณ
 interface SummaryItem {
@@ -28,7 +28,7 @@ interface SummaryData {
 
 
 function Dashboard() {
-  const [summary, setSummary] = useState<SummaryData | null>(null);;
+  const [summary, setSummary] = useState<SummaryData | null>(null);
 
   //test datatable 
   const columns = [
@@ -155,7 +155,27 @@ function Dashboard() {
           </div>
           {/* table */}
           <div className="overflow-x-auto">
-            <DataTable columns={columns} data={data} theadClassName="text-[#64748B]"/>
+             <DataTable columns={columns}>
+                  <tbody>
+                     {data.map((row) => (
+                      <tr key={row.id} className="">
+                        
+                        <td className="px-6 py-4">{row.id}</td>
+
+                        <td className="px-6 py-4">{row.problems}</td>
+
+                        <td className="px-6 py-4">{row.area}</td>
+
+                        <td className="px-6 py-4 ">
+                        <div className="bg-yellow-400 rounded-lg w-6 h-6">{row.status}</div>
+                        </td>
+
+                        <td className="px-6 py-4">{row.time}</td>
+
+                      </tr>
+                     ))}
+                  </tbody>
+                </DataTable>
           </div>
 
         </div>
