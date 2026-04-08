@@ -6,6 +6,7 @@ import DataTable from "@/components/ui/Admin_director/DataTableBase"
 import { FaRegUser } from "react-icons/fa"
 import { MdOutlineLocalPhone } from "react-icons/md"
 import { IoIosArrowBack } from "react-icons/io"
+import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation"
 
 const Page = () => {
   const [activeTab, setActiveTab] = React.useState<"all" | "pending">("all")
@@ -332,7 +333,7 @@ const Page = () => {
             >
               <tbody className="text-sm text-secondary">
                 {paginatedData.map((row) => (
-                  <tr key={row.id} className="border-b border-gray-200 h-20">
+                  <tr key={row.id} className="border-b border-gray-200 h-20 cursor-pointer">
                     <td className="px-6 py-4 text-[#575E72]">{row.id}</td>
                     <td className="px-6 py-4 text-[#725C00]">{row.problems}</td>
                     <td className="px-6 py-4 text-[#15803D]">
@@ -398,49 +399,11 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center mt-6 mr-12 text-gray-500 gap-2">
-          <button
-            type="button"
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className={`flex items-center justify-center p-2 rounded-md ${
-              currentPage === 1 ? "opacity-40 cursor-not-allowed" : "hover:bg-gray-100"
-            }`}
-          >
-            <IoIosArrowBack />
-          </button>
-
-          {Array.from({ length: totalPages }, (_, index) => {
-            const page = index + 1
-            return (
-              <button
-                key={page}
-                type="button"
-                onClick={() => setCurrentPage(page)}
-                className={`mx-1 px-3 py-1 rounded-md font-medium ${
-                  currentPage === page
-                    ? "bg-accent text-[#333847]"
-                    : "text-gray-500 hover:bg-gray-100"
-                }`}
-              >
-                {page}
-              </button>
-            )
-          })}
-
-          <button
-            type="button"
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages || totalPages === 0}
-            className={`flex items-center justify-center p-2 rounded-md ${
-              currentPage === totalPages || totalPages === 0
-                ? "opacity-40 cursor-not-allowed"
-                : "hover:bg-gray-100"
-            }`}
-          >
-            <IoIosArrowBack className="rotate-180" />
-          </button>
-        </div>
+        <ComplaintPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </div>
   )
