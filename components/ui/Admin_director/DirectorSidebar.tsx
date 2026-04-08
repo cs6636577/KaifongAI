@@ -3,9 +3,8 @@ import { useState } from "react"
 import Image from "next/image"
 import KaifongLogo from "../../../public/logo/Kaifong_logo2.png"
 import { MdOutlineDashboard, MdSettings, MdKeyboardArrowDown } from "react-icons/md"
-import { FaRegUser } from "react-icons/fa6"
 import { TbBook2 } from "react-icons/tb"
-import { FaRegUserCircle } from "react-icons/fa"
+import { FaRegCheckSquare, FaRegUserCircle } from "react-icons/fa"
 import Link from 'next/link';
 
 type SidebarProps = {
@@ -57,11 +56,11 @@ export default function Sidebar({ isOpen }: SidebarProps) {
             <hr className="mx-1 border-black/20" />
 
             <Link
-                href="/director/notfound"
+                href="/director/evaluate"
                 className="block rounded-lg px-3 py-2 hover:bg-gray-100/10 transition-all duration-300"
             >
                 <div className="flex flex-row items-center gap-3">
-                    <MdSettings size={24} />
+                    <FaRegCheckSquare  size={24} />
                     <div>ตรวจสอบ / ประเมินผล</div>
                 </div>
             </Link>
@@ -111,8 +110,6 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                     </div>
                 </div>
             </div>
-
-            <hr className="mx-1 border-black/20" />
 
             <hr className="mx-1 border-black/20" />
         </div>
