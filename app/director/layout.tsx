@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AdminShell from "../adminshell";
+import DirectorShell from "../directorshell";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -11,5 +11,5 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <AdminShell>{children}</AdminShell>;
+  return <DirectorShell>{children}</DirectorShell>;
 }
