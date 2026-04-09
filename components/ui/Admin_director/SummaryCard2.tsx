@@ -6,7 +6,7 @@ interface SummaryCardProps {
   value: number | string;
   subvalue?: string | number;
   color: string ;
-
+  
 }
 
 export default function SummaryCard2({icon: Icon,title,value,subvalue,color}: SummaryCardProps) {
