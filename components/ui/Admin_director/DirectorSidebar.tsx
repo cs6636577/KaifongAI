@@ -95,7 +95,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                 >
                     <div className="ml-10 space-y-1 text-base">
                         <Link
-                            href="/director/notfound"
+                            href="/director/manual"
                             className="block rounded-lg px-3 py-2 hover:bg-gray-100/10 transition-all duration-300"
                         >
                             คู่มือการใช้งานช่าง
