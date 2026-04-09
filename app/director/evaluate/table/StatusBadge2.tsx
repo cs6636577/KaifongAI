@@ -14,7 +14,7 @@ export default function StatusBadge({ status }: Props) {
   `}
 >
     <span className="flex items-center gap-2">
-        <FaCircle size={11}/>
+            <FaCircle size={11}/>
           {status}
     </span>
 </span>
