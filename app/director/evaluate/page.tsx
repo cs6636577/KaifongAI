@@ -2,7 +2,7 @@
 
 import React from "react"
 import ComplaintToolbar from "@/components/ui/Admin_director/ComplainToolbar"
-import { complaints } from "./data"
+import { complaints } from "./table/data"
 import ComplaintTable from "./table/complainTable"
 import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation"
 

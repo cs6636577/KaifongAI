@@ -1,4 +1,4 @@
-import { Complaint } from "./table/complain"
+import { Complaint } from "./complain"
 
 export const complaints: Complaint[] = [
   {

@@ -1,14 +1,13 @@
 "use client"
 
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 import DataTable from "@/components/ui/Admin_director/DataTableBase"
-import { Complaint } from "../../evaluate/table/complain"
+import { Complaint } from "./complain"
 import PersonCell from "./personCell"
 import PhoneCell from "./phoneCell"
-import StatusBadge from "./statusBadge"
 import StaffCell from "./staffCell"
 import ChannelBadge from "./chanelBadge"
+import StatusBadge from "./statusBadge"
 
 type Props = {
   columns: { key: string; title: string }[]
@@ -29,37 +28,24 @@ export default function ComplaintTable({ columns, data }: Props) {
             {data.map((row) => (
               <tr
                 key={row.id}
-                onClick={() => router.push(`/director/evaluate/id/${row.id}`)}
-                
-                // onClick={()=> router.push('/director/notfound')} (`/admin/evaluate/table/${row.id}`
+                onClick={() => router.push(`/director/evaluate/detail/${row.id}`)}
                 className="border-b border-gray-200 h-20 hover:bg-gray-50 cursor-pointer transition"
               >
                 <td className="px-6 py-4 text-[#575E72]">{row.id}</td>
-
-                <td className="px-6 py-4 text-[#725C00]">
-                  {row.problems}
-                </td>
-
+                <td className="px-6 py-4 text-[#725C00]">{row.problems}</td>
                 <td className="px-6 py-4">
                   <ChannelBadge app={row.app} />
                 </td>
-
-                <td className="px-6 py-4 font-bold text-secondary">
-                  {row.title}
-                </td>
-
+                <td className="px-6 py-4 font-bold text-secondary">{row.title}</td>
                 <td className="px-6 py-4">
                   <PersonCell person={row.person} />
                 </td>
-
                 <td className="px-6 py-4">
                   <PhoneCell phone={row.phone} />
                 </td>
-
                 <td className="px-6 py-4">
-                  <StatusBadge status={row.status} />
+                  <StatusBadge status={row.status}/>
                 </td>
-
                 <td className="px-6 py-4">
                   <StaffCell staff={row.staff} />
                 </td>
