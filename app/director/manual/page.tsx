@@ -6,9 +6,11 @@ import ComplaintSearchInput from '@/components/ui/Admin_director/ComplainSearchI
 import { RiDropdownList } from 'react-icons/ri'
 import ManualToolbar from '@/components/ui/Director/ManualToolbar'
 import ComplaintPagination from '@/components/ui/Admin_director/PageNavigation'
+import FileCard from '@/components/ui/Director/fileCard'
 
 const StaffManualPage = () => {
     const [currentPage, setCurrentPage] = React.useState(1)
+
   return (
     <div className="min-h-screen bg-background flex  justify-center">
         <div className="max-w-7xl mx-3 px-6 sm:px-6 lg:px-8 py-8 w-full">
@@ -22,6 +24,10 @@ const StaffManualPage = () => {
 
             <div className='mt-8'>
                 <ManualToolbar/>
+            </div>
+
+            <div>
+                <FileCard/>
             </div>
 
             <div>
