@@ -31,72 +31,75 @@ type data = [
   }
 ];
 
-const fileCard = () => {
+const FileCard = () => {
   return (
-<div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-80 rounded-t-3xl">
-  <div className="relative h-35 m-0 overflow-hidden text-white rounded-t-3xl">
-    <img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="card-image" />
-  </div>
+    <div className="w-75 rounded-2xl bg-white shadow-sm border border-slate-200 overflow-hidden transition hover:-translate-y-0.5 hover:shadow-md cursor-pointer">
+      
+      {/* IMAGE */}
+      <div className="relative h-40 bg-[#4B5563]">
+        <img
+          src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10"
+          alt="card"
+          className="w-full h-full object-cover opacity-60"
+        />
 
-  <div className="p-4">
-    <h6 className="mb-2 text-slate-800 text-lg font-semibold">
-      หัวข้อยาวยาวยาวยาว
-    </h6>
-    <p className="text-[#575E72]/80 leading-normal font-light text-md">
-      The place is close to Barceloneta Beach and bus stop just 2 min by walk
-      and near to &quot;Naviglio&quot; where you can enjoy the main night life in
-      Barcelona.
-    </p>
-
-    {/* sub */}
-    <div className='relative mt-4 flex flex-row gap-3 text-sm text-[#575E72]/80'>
-      <div className='flex flex-row items-center'>
-        <span>
-          <CiCalendar/>
-        </span>
-        <span className='px-1'>
-          วันที่
-        </span>
+        {/*badge PDF*/}
+        <div className="absolute top-3 right-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full">
+          PDF
+        </div>
+        {/*icon กลางรูป*/}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <FaRegFileAlt className="text-red-500 text-4xl opacity-80" />
+        </div>
       </div>
 
-      <div className='flex flex-row items-center'>
-        <span>
-          <GoDatabase />
-        </span>
-        <span className='px-1'>
-          พื้นที่
-        </span>
+      {/* CONTENT */}
+      <div className="p-4">
+        {/* title */}
+        <h2 className="text-lg font-semibold text-[#161B29] line-clamp-2">
+          คู่มือการรับเรื่องร้องเรียนเบื้องต้น...
+        </h2>
+
+        {/* description */}
+        <p className="mt-2 text-sm text-[#575E72]/80 line-clamp-2 leading-relaxed">
+          อธิบายขั้นตอนการรับเรื่อง การตรวจสอบข้อมูลพื้นฐาน และการคัดกรองประเภท...
+        </p>
+
+        {/* date + size */}
+        <div className="mt-4 flex items-center gap-4 text-sm text-[#575E72]/80">
+          <div className="flex items-center gap-1">
+            <CiCalendar />
+            <span>12 Oct 2023</span>
+          </div>
+
+          <div className="flex items-center gap-1">
+            <GoDatabase />
+            <span>2.4 MB</span>
+          </div>
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <div className="px-4 pb-4">
+        <hr className="mb-3 border-gray-200" />
+
+        <div className="flex items-center justify-between text-sm text-[#575E72]/80">
+          {/* view */}
+          <div className="flex items-center gap-1">
+            <IoEyeOutline />
+            <span>1,240</span>
+          </div>
+
+          {/* actions */}
+          <div className="flex items-center gap-3 text-lg text-[#161B29]">
+            <MdOutlineRemoveRedEye className="cursor-pointer hover:text-black" />
+            <RiPencilLine className="cursor-pointer hover:text-black" />
+            <FaRegTrashAlt className="cursor-pointer text-gray-400 hover:text-red-500" />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div className="px-4 pb-4 pt-0 mt-4 text-[#575E72]/80 text-sm">
-    <hr/>
-    <div className='flex flex-row justify-between'>
-      <div className='flex flex-row items-center mt-5'>
-        <span>
-          <IoEyeOutline/>
-        </span>
-        <span className='px-1'>
-          เลขวิว
-        </span>
-      </div>
-
-      <div className='text-lg text-[#161B29] flex flex-row mt-5 gap-3'>
-        <span>
-          <MdOutlineRemoveRedEye/>
-        </span>
-        <span>
-          <RiPencilLine/>
-        </span>
-        <span className='text-[#575E72]/80'>
-          <FaRegTrashAlt/>
-        </span>
-      </div>
-    </div>
-  </div>
-</div>  
   )
 }
 
-export default fileCard;
+export default FileCard;
