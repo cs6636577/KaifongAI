@@ -78,13 +78,15 @@ return (
       />
     </div>
 
-    <div className="mb-10 flex flex-row gap-6">
-      <div className="flex-2">
-        <CardDetail />
-      </div>
+    <div className="mb-10 pr-8">
+      <div className="flex flex-row gap-6">
+          <div className="flex-2">
+          <CardDetail />
+        </div>
 
-      <div className="flex-3">
-        <CardMap />
+        <div className="flex-3">
+          <CardMap />
+        </div>
       </div>
     </div>
   </div>

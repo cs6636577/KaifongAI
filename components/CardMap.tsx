@@ -15,7 +15,7 @@ const CardMap = () => {
         </span>
         </div>
         <div className='bg-white w-full border-gray-300/30 border-1 rounded-b-xl grid grid-cols-2'>
-            <div className='relative col-span-2 w-full h-full min-h-[500px]'>
+            <div className='relative col-span-2 w-full h-full min-h-[470px]'>
                 <Image
                     src={mapPic}
                     alt="Map"
