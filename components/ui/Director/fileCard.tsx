@@ -6,32 +6,22 @@ import { IoEyeOutline } from 'react-icons/io5';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiPencilLine } from 'react-icons/ri';
 
-type data = [
-  {
-    title: "คู่มือการรับเรื่องร้องเรียนเบื้องต้น",
-    description: "อธิบายขึ้นตอนการรับเรื่อง การตรวจสอบข้อมูลพื้นฐาน และการคัดกรองประเภท...",
-    date: "12 Oct 2023",
-    datasize: "2.4 MB",
-    type: "pdf",
-    viewcount: "1240"
-  },
-  {
-    title: "คู่มือการอัพเดตสถานะเรื่องร้องเรียน",
-    description: "คู่มือสำหรับเจ้าหน้าที่ในการเปลี่ยนแปลงสถานะ แจ้งความคืบหน้า และปิดงานอย่า..."
-    date: "14 Oct 2023",
-    datasize: "1.8 MB",
-    type: "pdf",
-    viewcount: "890"
-  },{
-    title: "Infographic ขั้นตอนการทำงาน",
-    desciption: "สรุปขั้นตอนการทำงานทั้งหมดแบบเห็นภาพเดียวจบ เข้าใจง่าย เหมาะสำหรับบอร์ด...",
-    date: "1920x1080 px",
-    datasize: "4.5 MB",
-    viewcount: "2,105"
-  }
-];
+type FileItem = {
+  title: string
+  description: string
+  date: string
+  datasize: string
+  filetype?: string
+  viewcount: string
+  image?: string
+}
 
-const FileCard = () => {
+
+type FileCardProps = {
+  item: FileItem
+}
+
+const FileCard = ({ item }: FileCardProps) => {
   return (
     <div className="w-75 rounded-2xl bg-white shadow-sm border border-slate-200 overflow-hidden transition hover:-translate-y-0.5 hover:shadow-md cursor-pointer">
       
@@ -45,7 +35,7 @@ const FileCard = () => {
 
         {/*badge PDF*/}
         <div className="absolute top-3 right-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full">
-          PDF
+          {item.filetype ?? "file"}
         </div>
         {/*icon กลางรูป*/}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -57,24 +47,24 @@ const FileCard = () => {
       <div className="p-4">
         {/* title */}
         <h2 className="text-lg font-semibold text-[#161B29] line-clamp-2">
-          คู่มือการรับเรื่องร้องเรียนเบื้องต้น...
+          {item.title}
         </h2>
 
         {/* description */}
         <p className="mt-2 text-sm text-[#575E72]/80 line-clamp-2 leading-relaxed">
-          อธิบายขั้นตอนการรับเรื่อง การตรวจสอบข้อมูลพื้นฐาน และการคัดกรองประเภท...
+          {item.description}
         </p>
 
         {/* date + size */}
         <div className="mt-4 flex items-center gap-4 text-sm text-[#575E72]/80">
           <div className="flex items-center gap-1">
             <CiCalendar />
-            <span>12 Oct 2023</span>
+            <span>{item.date}</span>
           </div>
 
           <div className="flex items-center gap-1">
             <GoDatabase />
-            <span>2.4 MB</span>
+            <span>{item.datasize}</span>
           </div>
         </div>
       </div>
@@ -87,7 +77,7 @@ const FileCard = () => {
           {/* view */}
           <div className="flex items-center gap-1">
             <IoEyeOutline />
-            <span>1,240</span>
+            <span>{item.viewcount}</span>
           </div>
 
           {/* actions */}
