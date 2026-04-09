@@ -84,14 +84,14 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                 >
                     <div className="ml-10 space-y-1 text-base">
                         <Link
-                            href="/admin/notfound"
+                            href="/admin/member-approval"
                             className="block rounded-lg px-3 py-2 hover:bg-gray-100/10 transition-all duration-300"
                         >
                             อนุมัติสมาชิก
                         </Link>
 
                         <Link
-                            href="/admin/notfound"
+                            href="/admin/permission-management"
                             className="block rounded-lg px-3 py-2 hover:bg-gray-100/10 transition-all duration-300"
                         >
                             จัดการสิทธิ์

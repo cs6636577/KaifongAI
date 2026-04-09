@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import {  getMember } from "@/services/memberData";
+import {  getApprovedMembers } from "@/services/memberData";
 
 export async function GET() {
-  const data = await getMember();
+  const data = await getApprovedMembers();
   return NextResponse.json(data);
 }

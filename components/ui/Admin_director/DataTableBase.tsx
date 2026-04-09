@@ -16,7 +16,7 @@ export default function DataTable({
   children,
 }: TableProps) {
   return (
-    <table className="w-full">
+    <table className="min-w-full">
       <thead className={theadClassName || "text-[#64748B]"}>
         <tr>
           {columns.map((col) => (

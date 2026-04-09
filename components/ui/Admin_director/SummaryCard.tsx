@@ -22,7 +22,7 @@ export default function SummaryCard({title,value,subvalue,color,trend,change,per
       {/* value row */}
       <div className="flex items-end gap-2 gap-x-24 sm:gap-x-16">
         <span className="text-3xl font-bold text-[var(--foreground)]">
-          {value}
+          {typeof value === "number" ? String(value).padStart(2, "0") : value}
         </span>
 
         {/* trend */}
