@@ -39,6 +39,7 @@ export interface Problem {
   id: number;
   name: string;
   description: string;
+  is_active?: boolean
 }
 
 export interface case_status_log{
@@ -170,4 +171,42 @@ export async function sortDate(): Promise<Case[]> {
     (a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime()
   );
   return sortedCases;
+}
+
+//อันนี้ table
+export async function getProblemWithCounts() {
+  const cases = rawData.cases;
+  const problems = rawData.problems;
+
+  const countMap: Record<number, number> = {};
+
+  for (const c of cases) {
+    countMap[c.problem_id] = (countMap[c.problem_id] || 0) + 1;
+  }
+
+  //merge กับ problems
+  return problems.map((p: any) => ({
+    id: p.id,
+    name: p.name,
+    description: p.description,
+    is_active: p.is_active,
+    total_cases: countMap[p.id] || 0
+  }));
+}
+
+//อันนี้ summary 
+export async function getProblemSummary() {
+  const problems = rawData.problems;
+
+  const total = problems.length;
+
+  const active = problems.filter((p: any) => p.is_active).length;
+
+  const inactive = total - active;
+
+  return {
+    total,
+    active,
+    inactive
+  };
 }

@@ -1,16 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import SummaryCard2 from "../../../components/ui/Admin_director/SummaryCard2";
-import type { ComponentType, SVGProps } from 'react'
 import DataTable from "@/components/ui/Admin_director/DataTableBase"
 import { Member } from "@/services/memberData"
 import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation";
-
 import FilterButton from "@/components/ui/Admin_director/FilterButton"
-
 import IOSSwitch from "@/components/ui/Admin_director/Toggle";
 import EditButton from "@/components/ui/Admin_director/EditButton"
-import { ShieldCheck, Users, UserCheck, UserX } from "lucide-react";
+
 
 export interface MemberSummary {
   admin: number;
@@ -52,22 +49,22 @@ summary
     {
       title: "เจ้าหน้าที่",
       value: summary.staff,
-      iconColor: "#1D4ED8", // สี icon
-      color: "#DBEAFE",     // สีพื้นหลังการ์ด hex
+      iconColor: "#1D4ED8", 
+      color: "#DBEAFE",    
       icon: "/member-management/staff.svg",
     },
     {
       title: "ผู้ตรวจสอบ",
       value: summary.auditor,
-      iconColor: "#047857", // สี icon
-      color: "#D1FAE5",     // สีพื้นหลังการ์ด hex
+      iconColor: "#047857", 
+      color: "#D1FAE5",     
       icon: "/member-management/auditor.svg",
     },
     {
       title: "ระงับสิทธิ์",
       value: summary.inactive,
-      iconColor: "#BA1A1A", // สี icon
-      color: "#FFDAD6",     // สีพื้นหลังการ์ด hex
+      iconColor: "#BA1A1A", 
+      color: "#FFDAD6",     
       icon: "/member-management/inactive.svg",
     },
   ]

@@ -149,7 +149,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
             <hr className="mx-1 border-black/20" />
 
             <Link
-                href="/admin/notfound"
+                href="/admin/problem-type"
                 className="block rounded-lg px-3 py-2 hover:bg-gray-100/10 transition-all duration-300"
             >
                 <div className="flex flex-row items-center gap-3">

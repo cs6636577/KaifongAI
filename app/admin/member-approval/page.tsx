@@ -11,6 +11,7 @@ import FilterButton from "@/components/ui/Admin_director/FilterButton"
 
 
 
+
 //สำหรับใส่ค่าส่งไปที่ components card ต่างๆ อิงส่วน ui และเนื้อหาจากหน้า ที่เป็นส่วนคำนวณ
 interface SummaryItem {
   id: number;
@@ -36,6 +37,7 @@ function MemberApproval() {
   const totalPages = Math.ceil(tableData.length / limit);
 
   const [buttonStates, setButtonStates] = useState<{ [id: number]: string }>({});
+
 
   //หัวตาราง 
   const columns = [
@@ -63,6 +65,34 @@ function MemberApproval() {
 
     return formatted;
   }
+  const Summary = {
+    topCards: [
+      {
+        title: "คำขอวันนี้",
+        value: 1,
+        subvalue: "+100%",
+        color: "#725C00",
+      },
+      {
+        title: "รอดำเนินการ",
+        value: 10,
+        subvalue: "Normal",
+        color: "#575E72",
+      },
+      {
+        title: "ถูกปฎิเสธ",
+        value: 2,
+        subvalue: "This Month",
+        color: "#EF4444",
+      },
+      {
+        title: "ความเร็วอนุมัติเฉลี่ย",
+        value: "1.0 ชม",
+        subvalue: "",
+        color: "#EDC200",
+      },
+    ],
+  };
 
   useEffect(() => {
     fetch("/api/member-approval/table")
@@ -97,11 +127,11 @@ function MemberApproval() {
           <h1 className="text-3xl font-bold text-[#333847] mb-3 pl-10">อนุมัติสมาชิก{" "}{tableData.length}</h1>
           <div className="ml-6"><FilterButton onClick={() => console.log("กรองข้อมูล")} /></div>
         </div>
-        
+
         <p className="text-xl text-muted-foreground mb-12 mx-10 ">ตรวจสอบและยืนยันตัวตนผู้ขอใช้งานระบบใหม่</p>
         {/*การ์ดส่วน1*/}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-6 ml-10 mt-10">
-          {summary?.topCards?.map((item, index) => (
+          {Summary?.topCards?.map((item, index) => (
             <SummaryCard
               key={index}
               title={item.title}
@@ -141,7 +171,10 @@ function MemberApproval() {
 
                     {/* Button */}
                     <button
-                      className={`rounded-lg w-24 h-8 text-white ${(buttonStates[row.id] || "อนุมัติ") === "อนุมัติ" ? "bg-green-500" : "bg-red-600"
+                      className={`rounded-lg w-24 h-8 text-white cursor-pointer transition-all duration-200
+                                ${(buttonStates[row.id] || "อนุมัติ") === "อนุมัติ"
+                          ? "bg-green-500 hover:bg-green-600 active:scale-95"
+                          : "bg-red-600 hover:bg-red-700 active:scale-95"
                         }`}
                       onClick={() => {
                         const val = buttonStates[row.id] || "อนุมัติ";

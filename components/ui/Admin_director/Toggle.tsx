@@ -14,7 +14,7 @@ const IOSSwitch = styled((props: SwitchProps) => (
     transitionDuration: "200ms",
 
     "&.Mui-checked": {
-      transform: "translateX(22px)", // 🔥 คำนวณให้แล้ว
+      transform: "translateX(22px)", 
       color: "#fff",
 
       "& + .MuiSwitch-track": {

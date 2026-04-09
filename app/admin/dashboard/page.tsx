@@ -10,6 +10,8 @@ import { ClockIcon, ClipboardDocumentListIcon, UsersIcon, LightBulbIcon, TrashIc
 import { BsTree } from "react-icons/bs";
 import { IoWaterOutline } from "react-icons/io5";
 import { FaTools } from "react-icons/fa";
+import { FabButton } from "@/components/ui/Admin_director/FabButton";
+
 
 //สำหรับใส่ค่าส่งไปที่ components card ต่างๆ อิงส่วน ui และเนื้อหาจากหน้า // lib/summaryDashboard.ts ที่เป็นส่วนคำนวณ
 interface SummaryItem {
@@ -223,8 +225,10 @@ function Dashboard() {
           </div>
 
         </div>
+        <div className="flex justify-end"><FabButton  style={{ backgroundColor: "#FFD100", color: "#161B29" }} onClick={() => console.log("เพิ่ม")}/></div>
       </div>
     </div>
+
   )
 }
 

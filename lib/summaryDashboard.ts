@@ -153,4 +153,3 @@ export async function getSummaryDataDashboard(data: DashboardData) {
     RankingCards: getRanking(data) 
   }
 }
-//***clean code 

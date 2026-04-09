@@ -1,4 +1,3 @@
-// app/api/table/route.ts
 import { NextResponse } from "next/server";
 import {  getCases,sortDate } from "@/services/DataProvider";
 
