@@ -1,7 +1,7 @@
 import React from 'react'
 import { RiMapPin2Line } from 'react-icons/ri'
 import Image from "next/image";
-import mapPic from "../public/map/Background.png"
+import mapPic from "../../../public/map/Background.png"
 
 const CardMap = () => {
   return (

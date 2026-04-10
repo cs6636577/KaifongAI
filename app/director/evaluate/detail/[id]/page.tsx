@@ -4,8 +4,8 @@ import { notFound } from "next/navigation"
 import StatusBadge2 from "../../table/StatusBadge2"
 import SummaryCard from "@/components/ui/Admin_director/SummaryCard"
 import SummaryCardLong from "@/components/ui/Admin_director/SummaryCardLong";
-import CardDetail from "@/components/CardDetail";
-import CardMap from "@/components/CardMap";
+import CardMap from "@/components/ui/Director/CardMap";
+import CardDetail from "@/components/ui/Director/CardDetail";
 
 type Props = {
   params: Promise<{
