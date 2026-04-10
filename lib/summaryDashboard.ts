@@ -28,7 +28,7 @@ export function summaryToday(data: DashboardData): SummaryItem{
    // % เพิ่มขึ้น = (วันนี้ - เมื่อวาน) / เมื่อวาน * 100
    const todayPercent = casesYesterday > 0 
     ? ((casesToday - casesYesterday) / casesYesterday * 100).toFixed(2) 
-    : "100"; // ถ้าเมื่อวานไม่มีเลย ถือว่าเพิ่ม 100%
+    : "0"; 
 
     return  { title: "เรื่องที่ร้องเรียนวันนี้", value: casesToday, subvalue:todayPercent + "%", color:"#725C00"}
 
@@ -44,7 +44,7 @@ export function summaryMonth(data: DashboardData): SummaryItem{
   const total = data.cases.filter(c => c.datetime.slice(0, 7) === currentMonth).length;
   const prev = data.cases.filter(c => c.datetime.slice(0, 7) === lastMonth).length;
   // % เพิ่มขึ้น = (เดือนนี้ - เดือนก่อน) / เดือนก่อน * 100
-  const percent = prev > 0 ? ((total - prev) / prev * 100).toFixed(2) : "100";
+  const percent = prev > 0 ? ((total - prev) / prev * 100).toFixed(2) : "0";
   
   //console.log("เดือนก่อน "+lastMonth+" มี "+ prev);
   //console.log("เดือนนี้ "+currentMonth+" มี "+ total);
@@ -94,9 +94,9 @@ export function summaryAvgCloseTime(data: DashboardData): SummaryItem{
   })
   .filter(v => v !== null); 
 
-  const avgCloseTime = times.length > 0
-    ? times.reduce((a, b) => a + b, 0) / times.length / (1000 * 60 * 60 * 24)
-    : 0;
+  const avgCloseTime = times.length > 0 ? times.reduce((a, b) => a + b, 0) / times.length / (1000 * 60 * 60 * 24) : 0; //ms → sec (÷1000) → min (÷60) → hr (÷60) → day (÷24)
+    //sum(resolved-pending)/(resolvedCases)
+
   //console.log(data.case_status_logs[0]);
   console.log(Number(avgCloseTime.toFixed(2)));
   //console.log(avgCloseTime);
