@@ -5,16 +5,23 @@ type Props = {
 }
 
 export default function StatusBadge({ status }: Props) {
+
+  const iconColor = status === "ประเมินผลเสร็จสิ้น"
+    ? "#22C55E"
+    : status === "กำลังดำเนินการ"
+    ? "#FFD100"
+    : "#EF4444"
+
   return (
 <span
   className={`px-3 py-1.5 rounded-full text-sm font-bold border whitespace-nowrap absolute
-    ${status === "ประเมินผลเสร็จสิ้น" && "bg-green-100 text-green-700 border-green-700/20"}
-    ${status === "กำลังดำเนินการ" && "bg-yellow-100 text-yellow-800 border-yellow-700/20"}
-    ${status === "ไม่รับเรื่อง" && "bg-red-100 text-red-700 border-red-700/20"}
+    ${status === "ประเมินผลเสร็จสิ้น" && "bg-green-100 text-green-700 border-[#BBF7D0]"}
+    ${status === "กำลังดำเนินการ" && "bg-yellow-100 text-yellow-800 border-[#FFD100]/30"}
+    ${status === "ไม่รับเรื่อง" && "bg-red-100 text-red-700 border-red-300/30"}
   `}
 >
     <span className="flex items-center gap-2">
-            <FaCircle size={11}/>
+            <FaCircle size={11} color={iconColor}/>
           {status}
     </span>
 </span>
