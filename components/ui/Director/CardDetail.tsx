@@ -59,9 +59,9 @@ const CardDetail = () => {
             </div>
 
             {/* file */}
-            <div className='mt-12 p-2 px-8'>
+            <div className='mt-12 p-2 px-8 h-full w-full col-span-2'>
                 <p className="text-sm font-semibold text-gray-500">ไฟล์แนบเพิ่มเติม</p>
-                <div className='flex flex-row gap-3'>
+                <div className='flex flex-wrap gap-3 mt-4'>
                     {/* file1 */}
                     <div className="mt-4 gap-4">
                         <div className="flex items-center gap-3 rounded-2xl bg-indigo-50 px-5 py-4">
@@ -69,7 +69,7 @@ const CardDetail = () => {
                                 <MdOutlinePictureAsPdf />
                             </span>
                             <span className="font-semibold text-slate-800">
-                                screenshot_issue_01.jpg
+                                screenshot_01.jpg
                             </span>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ const CardDetail = () => {
                                 <MdOutlinePictureAsPdf />
                             </span>
                             <span className="font-semibold text-slate-800">
-                                screenshot_issue_01.jpg
+                                screenshot_02.jpg
                             </span>
                         </div>
                     </div>

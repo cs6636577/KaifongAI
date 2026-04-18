@@ -22,7 +22,7 @@ export default async function DetailPage({ params }: Props) {
     notFound()
   }
 return (
-  <div className="w-full px-10 mx-8 flex flex-col gap-6 mt-3">
+  <div className="w- h-full px-10 mx-8 flex flex-col gap-6 mt-3">
     
     {/* HEADER */}
     <div className="flex items-center justify-between">
@@ -45,16 +45,16 @@ return (
       {/* ขวา */}
       <div className="flex flex-col items-end gap-3 mr-14 mt-8">
         <div className="flex gap-3">
-          <button className="rounded-xl border border-gray-300 px-4 py-2 text-gray-600 hover:bg-gray-100 transition">
+          <button className="rounded-xl border border-gray-300 px-4 py-2 text-gray-600 hover:bg-gray-100 transition cursor-pointer">
             ประวัติคำร้อง
           </button>
 
-          <button className="rounded-xl border border-gray-300 px-4 py-2 text-gray-600 hover:bg-gray-100 transition">
+          <button className="rounded-xl border border-gray-300 px-4 py-2 text-gray-600 hover:bg-gray-100 transition cursor-pointer">
             ดูผลการดำเนินการ
           </button>
         </div>
 
-        <button className="rounded-xl bg-accent mr-24 px-6 py-2 text-black hover:bg-yellow-500 transition">
+        <button className="rounded-xl bg-accent mr-24 px-6 py-2 text-black hover:bg-yellow-500 transition cursor-pointer">
           ประเมินการปฏิบัติงาน
         </button>
       </div>

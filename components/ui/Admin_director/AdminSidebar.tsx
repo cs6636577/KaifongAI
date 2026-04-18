@@ -25,7 +25,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
             <div className="flex flex-row px-6 py-2 mt-2">
                 <div className="flex flex-col items-start">
                     <div className="h-10 flex items-start px-0 py-2 text-xl font-bold text-accent">
-                        KAIGONG AI
+                        KAIFONG AI
                     </div>
                     <div className="h-10 flex items-start px-0 text-sm font-light text-white">
                         ระบบแจ้งเรื่องร้องทุกข์
@@ -130,14 +130,14 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                 >
                     <div className="ml-10 space-y-1 text-base">
                         <Link
-                            href="/admin/notfound"
+                            href="/admin/manual/staff"
                             className="block rounded-lg px-3 py-2 hover:bg-gray-100/10 transition-all duration-300"
                         >
                             คู่มือการใช้งานช่าง
                         </Link>
 
                         <Link
-                            href="/admin/notfound"
+                            href="/admin/manual/reporter"
                             className="block rounded-lg px-3 py-2 hover:bg-gray-100/10 transition-all duration-300"
                         >
                             คู่มือการใช้งานเจ้าหน้าที่
