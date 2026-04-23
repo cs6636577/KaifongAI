@@ -1,9 +1,9 @@
 import React from 'react'
 import { CiCalendar } from 'react-icons/ci';
-import { FaRegFileAlt, FaRegTrashAlt } from 'react-icons/fa';
+import { FaRegFileAlt, FaRegImage, FaRegTrashAlt } from 'react-icons/fa';
 import { GoDatabase } from 'react-icons/go';
 import { IoEyeOutline } from 'react-icons/io5';
-import { MdOutlineRemoveRedEye } from 'react-icons/md';
+import { MdOutlinePhoto, MdOutlinePictureAsPdf, MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiPencilLine } from 'react-icons/ri';
 import { IBM_Plex_Mono } from "next/font/google";
 
@@ -23,12 +23,13 @@ type FileItem = {
   image?: string
 }
 
-
 type FileCardProps = {
   item: FileItem
 }
 
 const FileCard = ({ item }: FileCardProps) => {
+  const isImage = item.filetype === "IMAGE";
+
   return (
     <div className="w-75 rounded-2xl bg-white shadow-sm border border-slate-200 overflow-hidden transition hover:-translate-y-0.5 hover:shadow-md cursor-pointer">
       
@@ -40,13 +41,25 @@ const FileCard = ({ item }: FileCardProps) => {
           className="w-full h-full object-cover opacity-60"
         />
 
-        {/*badge PDF*/}
-        <div className="absolute top-3 right-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full">
-          {item.filetype ?? "file"}
+        {/* badge */}
+        <div
+          className={`absolute top-3 right-3 text-white text-xs px-3 py-1 rounded-full ${
+            isImage ? "bg-[#009688]" : "bg-[#BA1A1A]"
+          }`}
+        >
+          {item.filetype ?? "FILE"}
         </div>
+        
         {/*icon กลางรูป*/}
         <div className="absolute inset-0 flex items-center justify-center">
-          <FaRegFileAlt className="text-red-500 text-4xl opacity-80" />
+          {isImage && (
+            <MdOutlinePhoto  className="text-[#009688] text-6xl opacity-50" />
+          )}
+          {
+            !isImage && (
+              <MdOutlinePictureAsPdf  className="text-[#BA1A1A] text-6xl opacity-40" />
+            )
+          }
         </div>
       </div>
 

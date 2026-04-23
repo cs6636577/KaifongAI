@@ -1,6 +1,6 @@
 "use client"
-
 import React from "react"
+import { useEffect, useState, useMemo } from "react";
 import ComplaintToolbar from "@/components/ui/Admin_director/ComplainToolbar"
 import { complaints } from "./table/data"
 import ComplaintTable from "./table/complainTable"
@@ -29,6 +29,7 @@ export default function Page() {
   const [currentPage, setCurrentPage] = React.useState(1)
   const pageSize = 5
 
+  //text input search and filter button
   const filteredData = React.useMemo(() => {
     let result = complaints
 

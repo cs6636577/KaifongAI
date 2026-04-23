@@ -20,7 +20,8 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
                         "/admin/permission-management",
                         "/admin/manual/staff",
                         "/admin/manual/reporter",
-                        "/admin/problem-type"
+                        "/admin/problem-type",
+                        "/admin/manual/user",
                     ]
 
     return (
@@ -69,6 +70,13 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
                             </>
                     )}
                     {pathname === Linknames[5] ? "ประเภทปัญหา" : ""}
+                    {pathname === Linknames[6] && (
+                        <>
+                            <span className="text-gray-400">คู่มือการใช้งาน</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">คู่มือการใช้งานประชาชน</span>
+                        </>
+                    )}
                 </div>
             </span>
 

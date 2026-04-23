@@ -148,6 +148,13 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                         >
                             คู่มือการใช้งานเจ้าหน้าที่
                         </Link>
+
+                        <Link
+                            href="/admin/manual/user"
+                            className="block rounded-lg px-3 py-2 hover:bg-gray-100/10 transition-all duration-300"
+                        >
+                            คู่มือการใช้งานประชาชน
+                        </Link>
                     </div>
                 </div>
             </div>

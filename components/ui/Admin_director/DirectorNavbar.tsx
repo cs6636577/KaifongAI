@@ -18,7 +18,8 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
                         "/director/evaluate",
                         "/director/manual/staff",
                         "/director/manual/reporter",
-                        "/director/evaluate/detail/"
+                        "/director/evaluate/detail/",
+                        "/director/manual/user",
                     ]
 
     return (
@@ -58,6 +59,13 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
                             <span className="text-gray-400">รายการร้องทุกข์</span>
                             <span className="mx-2 text-white">/</span>
                             <span className="text-accent">รายละเอียดคำร้อง</span>
+                        </>
+                    )}
+                    {pathname === Linknames[5] && (
+                        <>
+                            <span className="text-gray-400">คู่มือการใช้งาน</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">คู่มือการใช้งานประชาชน</span>
                         </>
                     )}
                 </div>
