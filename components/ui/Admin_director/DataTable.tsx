@@ -30,7 +30,7 @@ export default function DataTable({ columns, data, theadClassName, className }: 
           {columns.map((col) => (
             <td
               key={col.key}
-              className={`text-left align-middle px-5 py-4 md:px-3 ${col.className || ""} ${className || ""}`}
+              className={`text-left align-middle px-5 py-4 md:px-4 ${col.className || ""} ${className || ""}`}
             >
               {col.render ? col.render(row[col.key], row) : row[col.key]}
             </td>

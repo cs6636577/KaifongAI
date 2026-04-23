@@ -62,7 +62,7 @@ function Dashboard() {
 
   //table 
   const columns = [
-    { key: "id", title: "รหัสรายการ" },
+    { key: "id", title: "รหัสรายการ", className: "font-bold" },
     { key: "problems", title: "หัวข้อร้องเรียน", className: "font-bold" },
     {
       key: "area", title: "พื้นที่", className: "text-gray-500"
