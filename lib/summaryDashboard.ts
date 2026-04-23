@@ -29,8 +29,9 @@ export function summaryToday(data: DashboardData): SummaryItem{
    const todayPercent = casesYesterday > 0 
     ? ((casesToday - casesYesterday) / casesYesterday * 100).toFixed(2) 
     : "0"; 
+    
 
-    return  { title: "เรื่องที่ร้องเรียนวันนี้", value: casesToday, subvalue:todayPercent + "%", color:"#725C00"}
+    return  { title: "เรื่องที่ร้องเรียนวันนี้", value: casesToday, color:"#725C00"}
 
 }
 //เดือน 
@@ -49,20 +50,20 @@ export function summaryMonth(data: DashboardData): SummaryItem{
   //console.log("เดือนก่อน "+lastMonth+" มี "+ prev);
   //console.log("เดือนนี้ "+currentMonth+" มี "+ total);
 
-  return { title: "เรื่องที่ร้องเรียนเดือนนี้", value: total , subvalue: percent + "%", color:"#FFD100"}; 
+  return { title: "เรื่องที่ร้องเรียนเดือนนี้", value: total, color:"#FFD100"}; 
 }
 
 //pending
 export function summaryPending(data: DashboardData): SummaryItem{
   const total = data.cases.filter(c => c.status === "pending").length;
-  return { title: "รอดำเนินการ", value: total, subvalue:"ID: REQ-99" ,color:"#BA1A1A"};
+  return { title: "รอดำเนินการ", value: total ,color:"#BA1A1A"};
 }
 
 //success
 export function summaryResolved(data: DashboardData): SummaryItem {
   const total = data.cases.filter(c => c.status === "resolved").length;
   const percent = ((total / data.cases.length) * 100).toFixed(1);
-  return { title: "แก้ไขเสร็จสิ้นแล้ว", value: total, subvalue: percent + "%",color:"#059669"};
+  return { title: "แก้ไขเสร็จสิ้นแล้ว", value: total,color:"#059669"};
 }
 
 //สัปดาห์
@@ -105,11 +106,11 @@ export function summaryAvgCloseTime(data: DashboardData): SummaryItem{
   return { title: "เวลาเฉลี่ยในการปิดงาน", value: Number(avgCloseTime.toFixed(2)), subvalue: "วัน" };
 }
 
-//เจ้าหน้าที่ออนไลน์
+//เจ้าหน้าที่ออนไลน์ ตัดออก (ที่ออนไลน์ ณ ขณะนี้)
+/*
 export function summaryOnlineTechnicians(data: DashboardData): SummaryItem{
-  const total = data.technicians.filter(t => t.status === "approved").length;
-  return { title: "เจ้าหน้าที่ออนไลน์", value:total, subvalue: "คน" };
 }
+*/
 
 //อันดับปัญหา 
 export function getRanking(data: DashboardData) {
@@ -148,7 +149,7 @@ export async function getSummaryDataDashboard(data: DashboardData) {
     summaryToday(data), summaryMonth(data),summaryPending(data),summaryResolved(data)
     ],
     bottomCards: [
-    summaryWeek(data), summaryAvgCloseTime(data), summaryOnlineTechnicians(data)
+    summaryWeek(data), summaryAvgCloseTime(data)
     ],
     RankingCards: getRanking(data) 
   }
