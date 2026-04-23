@@ -33,12 +33,13 @@ interface SummaryData {
 function Dashboard() {
   const [summary, setSummary] = useState<SummaryData | null>(null);
   const [tableData, setTableData] = useState<any[]>([]);
-  //ปุ่ม ดูทั้งหมด default = 3 -> ดูทั้งหมด 6 (กดเลื่อนเรื่อยๆ) -> กดปุ่มดูทั้งหมดกลับ สี thead เปลี่ยน -> default
+  //ปุ่ม ดูทั้งหมด default = 3 -> ดูทั้งหมด 10 (กดเลื่อนเรื่อยๆ) -> กดปุ่มดูทั้งหมดกลับ สี thead เปลี่ยน -> default
   const [currentPage, setCurrentPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
   const DEFAULT_LIMIT = 3;
   const PAGE_LIMIT = 10;
   const limit = showAll ? PAGE_LIMIT : DEFAULT_LIMIT;
+
   const [statusFilter, setStatusFilter] = useState("all");
   const [showFilter, setShowFilter] = useState(false);
 
@@ -53,12 +54,10 @@ function Dashboard() {
     (currentPage - 1) * limit,
     currentPage * limit
   );
+
   useEffect(() => {
     setCurrentPage(1);
   }, [statusFilter, showAll]);
-
-
-
 
 
   //table 
@@ -104,33 +103,41 @@ function Dashboard() {
         )
       },
     },
-    { key: "time", title: "เวลาที่แจ้ง" },
+    { key: "time", title: "เวลาที่แจ้ง", className: "text-sm text-gray-400" },
   ];
 
   useEffect(() => {
-    fetch("/api/table")
-      .then((res) => res.json())
-      .then((cases: Case[]) => {
+  fetch("/api/table")
+    .then((res) => res.json())
+    .then((cases: Case[]) => {
+      const formatted = cases.map((c) => {
+        const date = new Date(c.datetime);
 
-        const formatted = cases.map((c) => ({
-          id: `REQ-${String(c.id).padStart(3, "0")}/${String(new Date(c.datetime).getFullYear() + 543).slice(-2)}`,
+        return {
+          id: `REQ-${String(c.id).padStart(2, "0")}/${String(
+            date.getFullYear() + 543
+          ).slice(-2)}`,
           problems: c.description,
           area: c.location,
           status: c.status,
-          time: new Date(c.datetime).toLocaleString("en-GB", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true,
-          }),
-        }));
+          time: date
+            .toLocaleString("th-TH", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hourCycle: "h12",
+            })
+            .replace("ก่อนเที่ยง", "AM")
+            .replace("หลังเที่ยง", "PM"),
+        };
+      });
 
-        setTableData(formatted);
-      })
-      .catch((err) => console.error("Fetch error:", err));
-  }, []);
+      setTableData(formatted);
+    })
+    .catch((err) => console.error("Fetch error:", err));
+}, []);
 
   useEffect(() => {
     fetch("/api/summary")

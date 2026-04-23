@@ -1,26 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import SummaryCard from "../../../components/ui/Admin_director/SummaryCard";
-import type { ComponentType, SVGProps } from 'react'
 import DataTable from "@/components/ui/Admin_director/DataTableBase"
 import { Member } from "@/services/memberData"
 import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation";
 import OptionsMenu from "@/components/ui/Admin_director/OptionMenu";
 import { IoIosCheckmark, IoIosClose } from "react-icons/io";
 import FilterButton from "@/components/ui/Admin_director/FilterButton"
-
-
-
-
-//สำหรับใส่ค่าส่งไปที่ components card ต่างๆ อิงส่วน ui และเนื้อหาจากหน้า ที่เป็นส่วนคำนวณ
-interface SummaryItem {
-  id: number;
-  icon?: ComponentType<SVGProps<SVGSVGElement>> | string;
-  title: string;
-  value: number | string;
-  subvalue: number;
-  color?: string;
-}
 
 interface SummaryData {
   requestToday: number;
@@ -29,7 +15,6 @@ interface SummaryData {
   approved: number;
   avgApproveHours: number;
 }
-
 
 function MemberApproval() {
   const [summary, setSummary] = useState<SummaryData | null>(null);
@@ -44,13 +29,6 @@ function MemberApproval() {
   const filteredData = tableData.filter((item) => item.status === statusFilter);
   const pageData = filteredData.slice((currentPage - 1) * limit, currentPage * limit);
   const totalPages = Math.ceil(filteredData.length / limit);
-
-  const [toast, setToast] = useState<{
-    message: string;
-    type: "success" | "error";
-  } | null>(null);
-
-
 
   //หัวตาราง 
   const columns =
