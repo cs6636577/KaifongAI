@@ -6,7 +6,7 @@ import { MdOutlinePictureAsPdf } from 'react-icons/md'
 const CardDetail = () => {
   return (
     <div className="flex flex-col">
-        <div className='bg-secondary px-8 py-3 w-full text-xl text-white flex flex-row mt-3 justify-start items-center rounded-t-xl'>
+        <div className='bg-secondary px-8 py-4.5 w-full text-xl text-white flex flex-row mt-3 justify-start items-center rounded-t-xl'>
             <span>
                 <GrDocumentText color="#FFD100"/>
             </span>
@@ -17,7 +17,7 @@ const CardDetail = () => {
                 <span className='pl-3'>
                     <BsChatLeftText />
                 </span>
-                <span className='mx-2 mt-1'>
+                <span className='mx-1 mt-0'>
                     LINE Official
                 </span>
             </span>
@@ -35,8 +35,8 @@ const CardDetail = () => {
 
                 <div className='mt-8'>
                     <p className="text-sm font-semibold text-gray-500">รายละเอียดปัญหา</p>
-                    <p className="mt-2 text-lg leading-9 text-slate-800">
-                        พบปัญหาอินเทอร์เน็ตไม่สามารถใช้งานได้...
+                    <p className="mt-2 text-md leading-9 text-slate-800">
+                        พบปัญหาอินเทอร์เน็ตไม่สามารถใช้งานได้ในพื้นที่ชั้น 4 ห้องประชุม 402และ 403 ตั้งแต่ช่วงเช้าเวลาประมาณ09:00 น. ทำให้ไม่สามารถจัดประชุมออนไลน์ได้ตามกำหนดการ
                     </p>
                 </div>
             </div>
@@ -45,25 +45,25 @@ const CardDetail = () => {
             <div className="p-8">
                 <div>
                     <p className="text-sm font-semibold text-gray-500">ประเภทบริการ</p>
-                    <h3 className="mt-2 text-lg font-semibold leading-9 text-slate-800">
+                    <h3 className="mt-2 text-md font-semibold leading-9 text-slate-800">
                         โครงสร้างพื้นฐานดิจิทัล (Network)
                     </h3>
                 </div>
 
                 <div className='mt-4'>
                     <p className="text-sm font-semibold text-gray-500">อุปกรณ์ที่เกี่ยวข้อง</p>
-                    <p className="mt-2 text-lg font-semibold leading-9 text-slate-800">
+                    <p className="mt-2 text-md font-semibold leading-9 text-slate-800">
                         Router / Access Point (ID: AP- 204-02)
                     </p>
                 </div>
             </div>
 
             {/* file */}
-            <div className='mt-12 p-2 px-8 h-full w-full col-span-2'>
+            <div className='mt-1 p-2 px-8 h-full w-full col-span-2'>
                 <p className="text-sm font-semibold text-gray-500">ไฟล์แนบเพิ่มเติม</p>
                 <div className='flex flex-wrap gap-3 mt-4'>
                     {/* file1 */}
-                    <div className="mt-4 gap-4">
+                    <div className="mt-2 gap-4">
                         <div className="flex items-center gap-3 rounded-2xl bg-indigo-50 px-5 py-4">
                             <span>
                                 <MdOutlinePictureAsPdf />
@@ -74,7 +74,7 @@ const CardDetail = () => {
                         </div>
                     </div>
                     {/* file2 */}
-                    <div className="mt-4 gap-4">
+                    <div className="mt-2 gap-4">
                         <div className="flex items-center gap-3 rounded-2xl bg-indigo-50 px-5 py-4">
                             <span>
                                 <MdOutlinePictureAsPdf />

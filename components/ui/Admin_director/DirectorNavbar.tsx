@@ -1,5 +1,11 @@
 "use client"
 import { usePathname } from 'next/navigation';
+import { Sarabun } from "next/font/google";
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 type NavbarProps = {
     isOpen: boolean
@@ -17,7 +23,7 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
 
     return (
         <div
-            className={`fixed top-0 right-0 z-30 h-16 bg-secondary flex items-center justify-between px-6 shadow-md transition-all duration-300 ${
+            className={`${thaiFont.className} fixed top-0 right-0 z-30 h-16 bg-secondary flex items-center justify-between px-6 shadow-md transition-all duration-300 ${
                 isOpen
                     ? "left-[276px] w-[calc(100%-276px)]"
                     : "left-0 w-full"
@@ -30,7 +36,7 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
                     </svg>
                 </div>
 
-                <div className={`font-meduim text-accent transition-all duration-300 ${isOpen ? "text-lg" : "text-2xl"}`}>
+                <div className={`font-bold text-accent transition-all duration-300 ${isOpen ? "text-lg" : "text-2xl"}`}>
                     {pathname === Linknames[0] ? "แดชบอร์ด" : ""}
                     {pathname === Linknames[1] ? "ตรวจสอบ / ประเมินผล" : ""}
                     {pathname === Linknames[2] && (

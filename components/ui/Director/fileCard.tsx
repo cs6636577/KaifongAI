@@ -5,6 +5,13 @@ import { GoDatabase } from 'react-icons/go';
 import { IoEyeOutline } from 'react-icons/io5';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiPencilLine } from 'react-icons/ri';
+import { IBM_Plex_Mono } from "next/font/google";
+
+
+const monoFont = IBM_Plex_Mono({
+    subsets: ["latin"],
+    weight: ["100","200","300","400", "500", "700"],
+})
 
 type FileItem = {
   title: string
@@ -56,7 +63,7 @@ const FileCard = ({ item }: FileCardProps) => {
         </p>
 
         {/* date + size */}
-        <div className="mt-4 flex items-center gap-4 text-sm text-[#575E72]/80">
+        <div className={` ${monoFont.className} mt-4 flex items-center gap-4 text-[13px] text-[#575E72]/80`}>
           <div className="flex items-center gap-1">
             <CiCalendar />
             <span>{item.date}</span>
@@ -76,14 +83,14 @@ const FileCard = ({ item }: FileCardProps) => {
         <div className="flex items-center justify-between text-sm text-[#575E72]/80">
           {/* view */}
           <div className="flex items-center gap-1">
-            <IoEyeOutline />
-            <span>{item.viewcount}</span>
+            {/* <IoEyeOutline />
+            <span>{item.viewcount}</span> */}
           </div>
 
           {/* actions */}
           <div className="flex items-center gap-3 text-lg text-[#161B29]">
-            <MdOutlineRemoveRedEye className="cursor-pointer hover:text-black" />
-            <RiPencilLine className="cursor-pointer hover:text-black" />
+            {/* <MdOutlineRemoveRedEye className="cursor-pointer hover:text-black" /> */}
+            <RiPencilLine className="cursor-pointer hover:text-black hover:text-gray-500" />
             <FaRegTrashAlt className="cursor-pointer text-gray-400 hover:text-red-500" />
           </div>
         </div>

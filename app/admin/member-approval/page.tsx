@@ -8,7 +8,18 @@ import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation";
 import OptionsMenu from "@/components/ui/Admin_director/OptionMenu";
 import { IoIosCheckmark, IoIosClose } from "react-icons/io";
 import FilterButton from "@/components/ui/Admin_director/FilterButton"
+import { Sarabun } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 
+const monoFont = IBM_Plex_Mono({
+    subsets: ["latin"],
+    weight: ["400", "500", "700"],
+})
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 
 
@@ -120,7 +131,7 @@ function MemberApproval() {
 
 
   return (
-    <div className="h-screen bg-background">
+    <div className={`${thaiFont.className} h-screen bg-background`}>
       <div className="w-full px-8 py-8 mx-auto">
 
         <div className="w-full flex justify-between mr-24">
@@ -148,7 +159,7 @@ function MemberApproval() {
             <tbody>
               {pageData.map((row, index) => (
                 <tr key={row.id} className="h-20">
-                  <td className="px-8 py-4 text-[#4D4632]"> {String((currentPage - 1) * limit + index + 1).padStart(2, "0")}</td>
+                  <td className={` ${monoFont.className} px-8 py-4 text-[#4D4632]`}> {String((currentPage - 1) * limit + index + 1).padStart(2, "0")}</td>
                   <td className="px-8 py-4">
                     <p className="font-bold">{row.name}{" "}{row.lastname}</p>
                     <p className="text-xs text-[#3D4457]">{row.email}</p>

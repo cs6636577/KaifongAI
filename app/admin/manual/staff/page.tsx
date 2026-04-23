@@ -8,6 +8,12 @@ import ManualToolbar from '@/components/ui/Director/ManualToolbar'
 import ComplaintPagination from '@/components/ui/Admin_director/PageNavigation'
 import FileCard from '@/components/ui/Director/fileCard'
 import { FaPlus } from 'react-icons/fa6'
+import { Sarabun} from "next/font/google";
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 type FileItem = {
   title: string
@@ -51,7 +57,7 @@ const StaffManualPage = () => {
     const [currentPage, setCurrentPage] = React.useState(1)
 
   return (
-    <div className="min-h-screen bg-background flex  justify-center">
+    <div className={`${thaiFont.className} min-h-screen bg-background flex  justify-center`}>
         <div className="max-w-7xl mx-3 px-6 sm:px-6 lg:px-8 py-8 w-full mt-5">
             <div className="flex items-start justify-between">
             <div>
@@ -76,10 +82,10 @@ const StaffManualPage = () => {
                 </span>
             </button> */}
 
-            <div className="flex gap-5 mt-8">
+            {/* <div className="flex gap-5 mt-8">
                 <EmojiButton/>
                 <EmojiButton2/>
-            </div>
+            </div> */}
 
             <div className='mt-8'>
                 <ManualToolbar/>

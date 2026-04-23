@@ -6,7 +6,7 @@ import mapPic from "../../../public/map/Background.png"
 const CardMap = () => {
   return (
     <div className="flex flex-col">
-      <div className='bg-secondary px-8 py-3 w-full text-xl text-white flex flex-row mt-3 justify-start items-center rounded-t-xl'>
+      <div className='bg-secondary px-8 py-4.5 w-full text-xl text-white flex flex-row mt-3 justify-start items-center rounded-t-xl'>
         <span>
             <RiMapPin2Line color="#FFD100"/>
         </span>

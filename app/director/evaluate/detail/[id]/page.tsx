@@ -3,9 +3,15 @@ import { complaints } from "../../table/data"
 import { notFound } from "next/navigation"
 import StatusBadge2 from "../../table/StatusBadge2"
 import SummaryCard from "@/components/ui/Admin_director/SummaryCard"
-import SummaryCardLong from "@/components/ui/Admin_director/SummaryCardLong";
+import SummaryCardLong from "@/components/ui/Director/SummaryCardLong";
 import CardMap from "@/components/ui/Director/CardMap";
 import CardDetail from "@/components/ui/Director/CardDetail";
+import { Sarabun} from "next/font/google";
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 type Props = {
   params: Promise<{
@@ -22,7 +28,7 @@ export default async function DetailPage({ params }: Props) {
     notFound()
   }
 return (
-  <div className="w- h-full px-10 mx-8 flex flex-col gap-6 mt-3">
+  <div className={` ${thaiFont.className} w- h-full px-10 mx-8 flex flex-col gap-6 mt-3`}>
     
     {/* HEADER */}
     <div className="flex items-center justify-between">
@@ -43,18 +49,18 @@ return (
       </div>
 
       {/* ขวา */}
-      <div className="flex flex-col items-end gap-3 mr-14 mt-8">
-        <div className="flex gap-3">
-          <button className="rounded-xl border border-gray-300 px-4 py-2 text-gray-600 hover:bg-gray-100 transition cursor-pointer">
+      <div className="flex flex-col items-end gap-3 mr-14 mt-8 font-bold">
+        <div className="flex gap-3 text-[14px]">
+          <button className="rounded-xl border border-gray-200 px-4 py-2.5 text-gray-600 hover:bg-gray-100 transition cursor-pointer">
             ประวัติคำร้อง
           </button>
 
-          <button className="rounded-xl border border-gray-300 px-4 py-2 text-gray-600 hover:bg-gray-100 transition cursor-pointer">
+          <button className="rounded-xl border border-gray-200 px-4 py-2.5 text-gray-600 hover:bg-gray-100 transition cursor-pointer">
             ดูผลการดำเนินการ
           </button>
         </div>
 
-        <button className="rounded-xl bg-accent mr-24 px-6 py-2 text-black hover:bg-yellow-500 transition cursor-pointer">
+        <button className=" text-[14px] rounded-xl bg-accent mr-19 px-8 py-2.5 text-black hover:bg-yellow-500 transition cursor-pointer">
           ประเมินการปฏิบัติงาน
         </button>
       </div>

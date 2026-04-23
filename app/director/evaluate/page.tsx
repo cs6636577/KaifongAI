@@ -5,6 +5,12 @@ import ComplaintToolbar from "@/components/ui/Admin_director/ComplainToolbar"
 import { complaints } from "./table/data"
 import ComplaintTable from "./table/complainTable"
 import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation"
+import { Sarabun} from "next/font/google";
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 const columns = [
   { key: "id", title: "ลำดับ" },
@@ -54,7 +60,7 @@ export default function Page() {
   }, [activeTab, search])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`${thaiFont.className} min-h-screen bg-background`}>
       <div className="w-full px-8 py-8 mx-auto">
         <h1 className="text-3xl font-bold text-[#333847] mb-7 ml-10">
           รายการคำร้องทุกข์
