@@ -195,7 +195,7 @@ function PermissionManagement() {
                                     <td className="px-6 py-4">
                                         <span
                                             className={`
-                                                w-24 text-center px-4 py-2 rounded-full font-bold text-sm font-medium inline-block
+                                                w-26 text-center px-4 py-2 rounded-full font-bold text-sm font-medium inline-block
                                                 ${row.role === "แอดมิน"
                                                     ? "bg-yellow-100 text-yellow-700"
                                                     : row.role === "เจ้าหน้าที่"
