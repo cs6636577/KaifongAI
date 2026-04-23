@@ -75,6 +75,7 @@ function PermissionManagement() {
     new Set(tableData.map((m) => m.role))
     );
     //----จบ filter เชิญแกะ เชิญก๊อป---//
+    //ขอบคุณครับสำหรับfilterแซ่บๆ
 
 
     //หัวตาราง 
@@ -154,7 +155,8 @@ function PermissionManagement() {
 
                 <div className="w-full flex justify-between mr-24">
                     <h1 className="text-3xl font-bold text-[#333847] mb-3 pl-10">จัดการสิทธิ์{" "}{tableData.length}</h1>
-                    <div className="ml-6"><FilterButton onClick={() => setIsFilterOpen(true)} />
+                    <div className="ml-6">
+                        <FilterButton onClick={() => setIsFilterOpen(true)} />
                         {/* filter checkbox*/}
                         <FilterModal
                             isOpen={isFilterOpen}

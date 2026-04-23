@@ -40,8 +40,7 @@ export default function Page() {
       result = result.filter(
         (item) =>
           item.problems.toLowerCase().includes(search.toLowerCase()) ||
-          item.person.toLowerCase().includes(search.toLowerCase()) ||
-          item.title.toLowerCase().includes(search.toLowerCase())
+          item.person.toLowerCase().includes(search.toLowerCase())
       )
     }
 
