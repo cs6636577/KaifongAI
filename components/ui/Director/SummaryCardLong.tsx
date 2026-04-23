@@ -51,11 +51,11 @@ export default function SummaryCardLong({
   value_time,
 }: SummaryCardProps) {
   return (
-    <div className="relative w-full rounded-2xl bg-white px-8 py-10 shadow-sm">
+    <div className="relative w-full rounded-2xl bg-white px-8 py-12 shadow-sm">
       {/* แถบเหลืองด้านซ้าย */}
       <div className="absolute left-0 top-0 bottom-0 rotate-180 w-2 rounded-r-full bg-[#FFD100]" />
 
-      <div className='flex flex-wrap items-start gap-x-14 gap-y-6 pl-4 justify-between'>
+      <div className='flex flex-wrap items-start gap-x-14 gap-y-6 pl-4 justify-between font-bold'>
         <InfoBlock label={title_app} value={`ผ่านทาง${value_app}`} />
         <InfoBlock label={title_number} value={value_number} />
         <InfoBlock label={title_department} value={value_department} />

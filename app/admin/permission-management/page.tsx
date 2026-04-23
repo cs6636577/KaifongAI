@@ -7,6 +7,18 @@ import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation";
 import FilterButton from "@/components/ui/Admin_director/FilterButton"
 import IOSSwitch from "@/components/ui/Admin_director/Toggle";
 import EditButton from "@/components/ui/Admin_director/EditButton"
+import { Sarabun } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
+
+const monoFont = IBM_Plex_Mono({
+    subsets: ["latin"],
+    weight: ["400", "500", "700"],
+})
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 
 export interface MemberSummary {
@@ -95,7 +107,7 @@ summary
 
 
     return (
-        <div className="h-screen bg-background">
+        <div className={`${thaiFont.className} h-screen bg-background`}>
             <div className="w-full px-8 py-8 mx-auto">
 
                 <div className="w-full flex justify-between mr-24">
@@ -144,7 +156,7 @@ summary
                                     </span>
                                     </td>
                                     <td className="px-8 py-4 font-bold">{row.name}{" "}{row.lastname}</td>
-                                    <td className="px-6 py-4 text-[var(--muted-foreground)]">{row.email}</td>
+                                    <td className={`${monoFont.className} px-6 py-4 text-[var(--muted-foreground)]`}>{row.email}</td>
                                     <td className="px-6 py-4 text-[var(--foreground2)]">{row.department}</td>
                                     <td className="px-6 py-4 ">
                                         <div className="flex items-center justify-between">

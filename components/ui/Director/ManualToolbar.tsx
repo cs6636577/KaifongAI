@@ -3,17 +3,17 @@ import ComplaintSearchInput from "../Admin_director/ComplainSearchInput"
 import SearchInput from "./SearchInput"
 import { FaList } from "react-icons/fa6"
 
-const ChevronDown = ({ className = "w-4 h-4" }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    className={className}
-  >
-    <path d="M6 9l6 6 6-6" />
-  </svg>
-)
+// const ChevronDown = ({ className = "w-4 h-4" }) => (
+//   <svg
+//     viewBox="0 0 24 24"
+//     fill="none"
+//     stroke="currentColor"
+//     strokeWidth="2"
+//     className={className}
+//   >
+//     <path d="M6 9l6 6 6-6" />
+//   </svg>
+// )
 
 export default function ManualToolbar() {
   return (
@@ -29,7 +29,7 @@ export default function ManualToolbar() {
 </div>
 
     {/* dropdown */}
-    <div className="flex items-center justify-between rounded-xl bg-white px-6 py-3.5 text-gray-500 min-w-[160px]">
+    {/* <div className="flex items-center justify-between rounded-xl bg-white px-6 py-3.5 text-gray-500 min-w-[160px]">
       <span></span>
       <ChevronDown />
     </div>
@@ -37,7 +37,7 @@ export default function ManualToolbar() {
     <div className="flex items-center justify-between rounded-xl bg-white px-6 py-3.5 text-gray-500 min-w-[160px]">
       <span></span>
       <ChevronDown />
-    </div>
+    </div> */}
 
     {/* toggle */}
     <div className="flex items-center rounded-xl bg-[#D9DCE8] p-1 gap-1">

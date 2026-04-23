@@ -8,6 +8,12 @@ import ManualToolbar from '@/components/ui/Director/ManualToolbar'
 import ComplaintPagination from '@/components/ui/Admin_director/PageNavigation'
 import FileCard from '@/components/ui/Director/fileCard'
 import { FaPlus } from 'react-icons/fa6'
+import { Sarabun} from "next/font/google";
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 type FileItem = {
   title: string
@@ -51,7 +57,7 @@ const StaffManualPage = () => {
     const [currentPage, setCurrentPage] = React.useState(1)
 
   return (
-    <div className="min-h-screen bg-background flex  justify-center">
+    <div className={`${thaiFont.className} min-h-screen bg-background flex  justify-center`}>
         <div className="max-w-7xl mx-3 px-6 sm:px-6 lg:px-8 py-8 w-full mt-5">
             <div className="flex items-start justify-between">
             <div>
@@ -67,18 +73,9 @@ const StaffManualPage = () => {
             </button>
         </div>
 
-            {/* <button className='bg-accent p-4 rounded-xl font-bold shadow-md cursor-pointer hover:bg-yellow-500 transition flex flex-row'>
-                <span>
-                    <FaPlus />
-                </span>
-                <span className=" ml-1 text-black text-md">
-                    อัพโหลดคู่มือใหม่
-                </span>
-            </button> */}
-
-            <div className="flex gap-5 mt-8">
+            {/* <div className="flex gap-5 mt-8">
                 {/* อันนี้เดี๋ยวเปลี่ยนทีหลังให้มันตามลิงค์ไม่ใช่staticแบบนี้ (มีcomponentsอยู่แล้ว) */}
-                <button className='bg-white p-4 rounded-xl font-bold shadow-xs cursor-pointer hover:bg-gray-200 transition border-1 border-gray-200'>
+                {/* <button className='bg-white p-4 rounded-xl font-bold shadow-xs cursor-pointer hover:bg-gray-200 transition border-1 border-gray-200'>
                     <span className='ml-1 text-[#575E72]'>
                         🧑‍💼 คู่มือการใช้งานเจ้าหน้าที่
                     </span>
@@ -89,12 +86,12 @@ const StaffManualPage = () => {
                 <button className='bg-accent p-4 rounded-xl font-bold shadow-md cursor-pointer hover:bg-yellow-500 transition'>
                     <span className='ml-1 text-black'>
                         📣 คู่มือการใช้งานผู้แจ้งเรื่อง
-                    </span>      
+                    </span>
                     <span className="bg-black text-accent text-xs rounded-xl ml-4 mr-1 px-2 py-1">
                         05
                     </span>
-                </button>
-            </div>
+                </button> */}
+            {/* </div>  */}
 
             <div className='mt-8'>
                 <ManualToolbar/>
