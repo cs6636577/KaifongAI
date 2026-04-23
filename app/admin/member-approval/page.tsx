@@ -221,10 +221,10 @@ function MemberApproval() {
               {pageData.map((row, index) => (
                 <tr key={row.id} className="h-20">
                   <td className={` ${monoFont.className} px-8 py-4 text-[#4D4632]`}> {String((currentPage - 1) * limit + index + 1).padStart(2, "0")}</td>
-                  {/* ลำดับ */}
+                  {/* ลำดับ
                   <td className="px-8 py-4 text-[#4D4632]">
                     {String((currentPage - 1) * limit + index + 1).padStart(2, "0")}
-                  </td>
+                  </td> */}
 
                   {/* ชื่อ */}
                   <td className="px-8 py-4">

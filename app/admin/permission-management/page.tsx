@@ -9,6 +9,8 @@ import IOSSwitch from "@/components/ui/Admin_director/Toggle";
 import EditButton from "@/components/ui/Admin_director/EditButton"
 import { Sarabun } from "next/font/google";
 import { IBM_Plex_Mono } from "next/font/google";
+import FilterModal from "@/components/ui/Admin_director/FilterModal";
+
 
 const monoFont = IBM_Plex_Mono({
     subsets: ["latin"],
@@ -19,8 +21,6 @@ const thaiFont = Sarabun({
   subsets: ["thai"],
   weight: ["400", "500", "700"],
 });
-import FilterModal from "@/components/ui/Admin_director/FilterModal";
-
 
 export interface MemberSummary {
     admin: number;
