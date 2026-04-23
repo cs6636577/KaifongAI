@@ -10,6 +10,7 @@ import EditButton from "@/components/ui/Admin_director/EditButton"
 import { Sarabun } from "next/font/google";
 import { IBM_Plex_Mono } from "next/font/google";
 import FilterModal from "@/components/ui/Admin_director/FilterModal";
+import EditMemberModal from "@/components/ui/Admin_director/EditMemberModal";
 
 
 const monoFont = IBM_Plex_Mono({
@@ -76,6 +77,15 @@ function PermissionManagement() {
     );
     //----จบ filter เชิญแกะ เชิญก๊อป---//
     //ขอบคุณครับสำหรับfilterแซ่บๆ
+
+    //edit
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [editingMember, setEditingMember] = useState<Member | null>(null);
+
+    const handleEdit = (member: Member) => {
+    setEditingMember(member);
+    setIsEditOpen(true);
+    };
 
 
     //หัวตาราง 
@@ -238,7 +248,15 @@ function PermissionManagement() {
                                                         );
                                                     }}
                                                 />
-                                                <EditButton />
+                                                <EditButton onClick={() => handleEdit(row)}  />
+                                                    <EditMemberModal
+                                                    isOpen={isEditOpen}
+                                                    member={editingMember}
+                                                    onClose={() => setIsEditOpen(false)}
+                                                    onSave={(data) => {
+                                                        console.log("save", data);
+                                                    }}
+                                                    />
                                             </div>
 
                                         </div>

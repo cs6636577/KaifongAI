@@ -1,6 +1,14 @@
-export default function SearchInput() {
+type Props = {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export default function SearchInput({
+  value,
+  onChange,
+}: Props) {
   return (
-    <div className="relative w-full max-w-[400px] ">
+    <div className="relative w-full max-w-[400px]">
       {/* Icon */}
       <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-black/70">
         <svg
@@ -21,8 +29,10 @@ export default function SearchInput() {
       <input
         type="text"
         placeholder="ค้นหาชื่อประเภท..."
+        value={value}
+        onChange={onChange}
         className="w-full border border-[#D1C6AB]/30 bg-[#FAF8FF] rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none"
       />
     </div>
-  )
+  );
 }

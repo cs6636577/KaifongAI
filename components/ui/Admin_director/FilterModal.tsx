@@ -40,7 +40,16 @@ export default function FilterModal({
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div className="bg-white w-[400px] p-6 rounded-xl">
 
-        <h2 className="text-lg font-bold mb-4">ตัวกรอง</h2>
+      <div className="flex justify-between items-center mb-4">
+      <h2 className="text-xl font-bold text-[#333847]">กรองข้อมูล</h2>
+
+      <button
+        onClick={onClose}
+        className="text-xl text-gray-500 hover:text-black hover:cursor-pointer"
+      >
+        ✕
+      </button>
+    </div>
 
         {/* ROLE */}
         <div className="mb-4">
@@ -76,8 +85,9 @@ export default function FilterModal({
           ))}
         </div>
 
-        <div className="flex justify-end gap-2">
-          <button
+        <div className="flex justify-end gap-5 ">
+         
+          <button className ="hover:cursor-pointer"
             onClick={() => {
               setSelectedRoles([]);
               setSelectedTypes([]);
@@ -85,8 +95,9 @@ export default function FilterModal({
           >
             ล้าง
           </button>
-
-          <button onClick={onClose}>ปิด</button>
+          <div className="px-4 py-2 rounded-xl bg-[#FFD100] font-bold">
+          <button className="hover:cursor-pointer " onClick={onClose}>เสร็จสิ้น</button>
+          </div>
         </div>
 
       </div>

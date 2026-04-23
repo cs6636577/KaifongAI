@@ -3,53 +3,44 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function SimpleDropDown() {
+type Props = {
+  value: string;
+  onChange: (value: string) => void;
+};
+
+export default function SimpleDropDown({ value, onChange }: Props) {
   return (
     <FormControl size="small" sx={{ minWidth: 140 }}>
       <Select
-        defaultValue=""
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         displayEmpty
         sx={{
-          borderRadius: 2,            
-          backgroundColor: "#FAF8FF", 
-          "& .MuiSelect-select": {
-            fontStyle: "normal",      
-          },
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "rgba(209, 198, 171, 0.3)", // ขอบเทาเวลา focus
-          },
+          borderRadius: 2,
+          backgroundColor: "#FAF8FF",
           "& fieldset": {
-            borderColor: "rgba(209, 198, 171, 0.3)", // ขอบเทาตอนปกติ
+            borderColor: "rgba(209, 198, 171, 0.3)",
           },
-            minWidth: 200, // กว้างเท่ากับตัว input
-          "& .MuiInputBase-root": {
-            height: 44, // ประมาณ py-3 ของ Tailwind
-            borderRadius: "1rem", // rounded-xl
-          },
+          minWidth: 200,
           "& .MuiSelect-select": {
-            paddingTop: "12px", // ปรับ padding ให้เหมือน input
+            paddingTop: "12px",
             paddingBottom: "12px",
-            paddingLeft: "24px", // เว้นให้ icon
-        },
-        }}
-        MenuProps={{
-          PaperProps: {
-            sx: {
-              borderRadius: 2,         
-              backgroundColor: "#FAF8FF", 
-            },
+            paddingLeft: "24px",
+          },
+         
+
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "rgba(209, 198, 171, 0.3)",
+          },
+
+          "&.Mui-focused": {
+            boxShadow: "none",
           },
         }}
       >
-        <MenuItem value="" sx={{ fontStyle: "normal" }}>
-          ทุกสถานะ
-        </MenuItem>
-        <MenuItem value="active" sx={{ fontStyle: "normal" }}>
-          เปิดใช้งาน
-        </MenuItem>
-        <MenuItem value="inactive" sx={{ fontStyle: "normal" }}>
-          ปิดใช้งาน
-        </MenuItem>
+        <MenuItem value="">ทุกสถานะ</MenuItem>
+        <MenuItem value="active">เปิดใช้งาน</MenuItem>
+        <MenuItem value="inactive">ปิดใช้งาน</MenuItem>
       </Select>
     </FormControl>
   );
