@@ -7,6 +7,30 @@ import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation";
 import OptionsMenu from "@/components/ui/Admin_director/OptionMenu";
 import { IoIosCheckmark, IoIosClose } from "react-icons/io";
 import FilterButton from "@/components/ui/Admin_director/FilterButton"
+import { Sarabun } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
+
+const monoFont = IBM_Plex_Mono({
+    subsets: ["latin"],
+    weight: ["400", "500", "700"],
+})
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
+
+
+
+//สำหรับใส่ค่าส่งไปที่ components card ต่างๆ อิงส่วน ui และเนื้อหาจากหน้า ที่เป็นส่วนคำนวณ
+interface SummaryItem {
+  id: number;
+  icon?: ComponentType<SVGProps<SVGSVGElement>> | string;
+  title: string;
+  value: number | string;
+  subvalue: number;
+  color?: string;
+}
 
 interface SummaryData {
   requestToday: number;
@@ -126,7 +150,7 @@ function MemberApproval() {
 
 
   return (
-    <div className="h-screen bg-background">
+    <div className={`${thaiFont.className} h-screen bg-background`}>
       <div className="w-full px-8 py-8 mx-auto">
 
         <div className="w-full flex justify-between mr-24">
@@ -196,10 +220,11 @@ function MemberApproval() {
             <tbody>
               {pageData.map((row, index) => (
                 <tr key={row.id} className="h-20">
-                  {/* ลำดับ */}
+                  <td className={` ${monoFont.className} px-8 py-4 text-[#4D4632]`}> {String((currentPage - 1) * limit + index + 1).padStart(2, "0")}</td>
+                  {/* ลำดับ
                   <td className="px-8 py-4 text-[#4D4632]">
                     {String((currentPage - 1) * limit + index + 1).padStart(2, "0")}
-                  </td>
+                  </td> */}
 
                   {/* ชื่อ */}
                   <td className="px-8 py-4">

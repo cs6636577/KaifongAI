@@ -10,6 +10,14 @@ import { ClockIcon, ClipboardDocumentListIcon, UsersIcon, LightBulbIcon, TrashIc
 import { BsTree } from "react-icons/bs";
 import { IoWaterOutline } from "react-icons/io5";
 import { FaTools } from "react-icons/fa";
+import { FabButton } from "@/components/ui/Admin_director/FabButton";
+import { Sarabun } from "next/font/google";
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
+
 import { IoFilterSharp } from "react-icons/io5"
 import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation";
 
@@ -190,7 +198,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex  justify-center">
+    <div className={`${thaiFont.className} min-h-screen bg-background flex  justify-center`}>
       <div className="max-w-7xl mx-3 px-6 sm:px-6 lg:px-8 py-8 w-full">
         <h1 className="text-3xl font-bold text-foreground mb-7">แดชบอร์ด</h1>
 

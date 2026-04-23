@@ -1,4 +1,11 @@
 "use client"
+import { usePathname } from 'next/navigation';
+import { Sarabun } from "next/font/google";
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 type NavbarProps = {
     isOpen: boolean
@@ -6,9 +13,19 @@ type NavbarProps = {
 }
 
 export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
+
+    const pathname = usePathname();
+    const Linknames = ["/admin/dashboard",
+                        "/admin/member-approval",
+                        "/admin/permission-management",
+                        "/admin/manual/staff",
+                        "/admin/manual/reporter",
+                        "/admin/problem-type"
+                    ]
+
     return (
         <div
-            className={`fixed top-0 right-0 z-30 h-16 bg-secondary flex items-center justify-between px-6 shadow-md transition-all duration-300 ${
+            className={`${thaiFont.className} fixed top-0 right-0 z-30 h-16 bg-secondary flex items-center justify-between px-6 shadow-md transition-all duration-300 ${
                 isOpen
                     ? "left-[276px] w-[calc(100%-276px)]"
                     : "left-0 w-full"
@@ -21,8 +38,37 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
                     </svg>
                 </div>
 
-                <div className={`font-bold text-accent transition-all duration-300 ${isOpen ? "text-xl" : "text-4xl"}`}>
-                    หัวข้อ
+                <div className={`font-bold text-accent transition-all duration-300 ${isOpen ? "text-lg" : "text-3xl"}`}>
+                    {pathname === Linknames[0] ? "แดชบอร์ด" : ""}
+                    {pathname === Linknames[1] && (
+                        <>
+                            <span className="text-gray-400">สมาชิก</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">จัดการสิทธิ์</span>
+                        </>
+                    )}
+                    {pathname === Linknames[2] && (
+                        <>
+                            <span className="text-gray-400">สมาชิก</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">อนุมัติสมาชิก</span>
+                        </>
+                    )}
+                    {pathname === Linknames[3] && (
+                        <>
+                            <span className="text-gray-400">คู่มือการใช้งาน</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">คู่มือการใช้งานช่าง</span>
+                        </>
+                    )}
+                    {pathname === Linknames[4] && (
+                        <>
+                            <span className="text-gray-400">คู่มือการใช้งาน</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">คู่มือการใช้งานผู้แจ้งเรื่อง</span>
+                            </>
+                    )}
+                    {pathname === Linknames[5] ? "ประเภทปัญหา" : ""}
                 </div>
             </span>
 

@@ -1,14 +1,29 @@
 "use client"
+import { usePathname } from 'next/navigation';
+import { Sarabun } from "next/font/google";
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 type NavbarProps = {
     isOpen: boolean
     onMenuClick: () => void
 }
-
 export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
+
+    const pathname = usePathname();
+    const Linknames = ["/director/dashboard",
+                        "/director/evaluate",
+                        "/director/manual/staff",
+                        "/director/manual/reporter",
+                        "/director/evaluate/detail/"
+                    ]
+
     return (
         <div
-            className={`fixed top-0 right-0 z-30 h-16 bg-secondary flex items-center justify-between px-6 shadow-md transition-all duration-300 ${
+            className={`${thaiFont.className} fixed top-0 right-0 z-30 h-16 bg-secondary flex items-center justify-between px-6 shadow-md transition-all duration-300 ${
                 isOpen
                     ? "left-[276px] w-[calc(100%-276px)]"
                     : "left-0 w-full"
@@ -21,8 +36,30 @@ export default function Navbar({ isOpen, onMenuClick }: NavbarProps) {
                     </svg>
                 </div>
 
-                <div className={`font-bold text-accent transition-all duration-300 ${isOpen ? "text-xl" : "text-4xl"}`}>
-                    หัวข้อ
+                <div className={`font-bold text-accent transition-all duration-300 ${isOpen ? "text-lg" : "text-2xl"}`}>
+                    {pathname === Linknames[0] ? "แดชบอร์ด" : ""}
+                    {pathname === Linknames[1] ? "ตรวจสอบ / ประเมินผล" : ""}
+                    {pathname === Linknames[2] && (
+                        <>
+                            <span className="text-gray-400">คู่มือการใช้งาน</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">คู่มือการใช้งานช่าง</span>
+                        </>
+                    )}
+                    {pathname === Linknames[3] && (
+                        <>
+                            <span className="text-gray-400">คู่มือการใช้งาน</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">คู่มือการใช้งานผู้แจ้งเรื่อง</span>
+                        </>
+                    )}
+                    {pathname.startsWith(Linknames[4]) && (
+                        <>
+                            <span className="text-gray-400">รายการร้องทุกข์</span>
+                            <span className="mx-2 text-white">/</span>
+                            <span className="text-accent">รายละเอียดคำร้อง</span>
+                        </>
+                    )}
                 </div>
             </span>
 

@@ -9,6 +9,18 @@ import AddButton from "@/components/ui/Admin_director/AddButton";
 import SimpleDropDown from "@/components/ui/Admin_director/SimpleDropDown";
 import SearchInput from "@/components/ui/Admin_director/Search";
 import AddProblemTypeModal from "@/components/ui/Admin_director/ProblemTypeModal";
+import { Sarabun } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
+
+const monoFont = IBM_Plex_Mono({
+    subsets: ["latin"],
+    weight: ["400", "500", "700"],
+})
+
+const thaiFont = Sarabun({
+  subsets: ["thai"],
+  weight: ["400", "500", "700"],
+});
 
 export interface Problem {
     id: number;
@@ -113,7 +125,7 @@ function ProblemType() {
 
 
     return (
-        <div className="h-screen bg-background">
+        <div className={`${thaiFont.className} h-screen bg-background`}>
             <div className="w-full px-8 py-8 mx-auto">
 
                 <h1 className="text-3xl font-bold text-[#333847] mb-3 pl-10">จัดการประเภทปัญหา</h1>
@@ -129,8 +141,8 @@ function ProblemType() {
                     </div>
                 </div>
 
-                <div className="flex gap-3 mb-6 ml-10 mt-4">
-                    <div className=" text-center px-4 py-2 rounded-full bg-gray-200 border border-gray-300 text-gray-600 font-bold">
+                <div className={` ${monoFont.className} flex gap-3 mb-6 ml-10 mt-4`}>
+                    <div className="text-center px-4 py-2 rounded-full bg-gray-200 border border-gray-300 text-gray-600 font-bold">
                         ทั้งหมด{" "}{summary?.total ?? 0}
                     </div>
 
@@ -175,8 +187,8 @@ function ProblemType() {
                                 >
                                     <td className="px-8 py-4">
                                         <div className="flex justify-between gap-3">
-                                            <span>{row.id}</span>
-                                            <span className="text-2xl">{problemImageMap[row.name]}</span>
+                                        <span className={`${monoFont.className}`}>{row.id}</span>
+                                        <span className="text-2xl">{ problemImageMap[row.name] }</span>
                                         </div>
 
                                     </td>
@@ -185,7 +197,7 @@ function ProblemType() {
                                     <td className="px-6 py-4 ">
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-12">
-                                                <div className={`w-12 h-7 flex items-center justify-center rounded-xl
+                                                <div className={`${monoFont.className} w-12 h-7 flex items-center justify-center rounded-xl
                                                     ${row.is_active ? "bg-[#FFD100]" : "bg-[#E9E9EA] text-gray-500"}`}>
                                                     {row.total_cases}
                                                 </div>
