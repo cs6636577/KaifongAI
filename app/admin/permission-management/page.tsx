@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import SummaryCard2 from "../../../components/ui/Admin_director/SummaryCard2";
 import DataTable from "@/components/ui/Admin_director/DataTableBase"
 import { Member } from "@/services/memberData"
@@ -19,13 +19,14 @@ const thaiFont = Sarabun({
   subsets: ["thai"],
   weight: ["400", "500", "700"],
 });
+import FilterModal from "@/components/ui/Admin_director/FilterModal";
 
 
 export interface MemberSummary {
-  admin: number;
-  staff: number;
-  auditor: number;
-  inactive: number;
+    admin: number;
+    staff: number;
+    auditor: number;
+    inactive: number;
 }
 
 function PermissionManagement() {
@@ -34,10 +35,47 @@ function PermissionManagement() {
     const [currentPage, setCurrentPage] = useState(1);
     const limit = 5;
 
-    const pageData = tableData.slice((currentPage - 1) * limit, currentPage * limit);
-    const totalPages = Math.ceil(tableData.length / limit);
+    //filter checkbox 
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-    const [isOn, setIsOn] = useState(true);
+    const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
+    const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+
+    const filteredData = useMemo(() => {
+        return tableData.filter((item) => {
+            const roleMatch =
+                selectedRoles.length === 0 || selectedRoles.includes(item.role);
+
+            const typeMatch =
+                selectedTypes.length === 0 ||
+                selectedTypes.includes(item.technician_type);
+
+            return roleMatch && typeMatch;
+        });
+    }, [tableData, selectedRoles, selectedTypes]);
+
+    const pageData = useMemo(() => {
+        return filteredData.slice(
+            (currentPage - 1) * limit,
+            currentPage * limit
+        );
+    }, [filteredData, currentPage]);
+
+    const totalPages = useMemo(() => {
+    return Math.ceil(filteredData.length / limit);
+    }, [filteredData]);
+   
+    const types = Array.from(
+    new Set(tableData
+        .filter((m) => m.technician_type !== "-")
+        .map(m => m.technician_type))
+    );
+
+    const roles = Array.from(
+    new Set(tableData.map((m) => m.role))
+    );
+    //----จบ filter เชิญแกะ เชิญก๊อป---//
+
 
     //หัวตาราง 
     const columns = [
@@ -49,38 +87,38 @@ function PermissionManagement() {
     ];
 
     const topCards =
-summary
-? [
-    {
-      title: "แอดมินระบบ",
-      value: summary.admin,
-      iconColor: "#725C00", // สี icon
-      color: "rgba(255, 209, 0, 0.2)",     // สีพื้นหลังการ์ด hex
-      icon: "/member-management/admin.svg",
-    },
-    {
-      title: "เจ้าหน้าที่",
-      value: summary.staff,
-      iconColor: "#1D4ED8", 
-      color: "#DBEAFE",    
-      icon: "/member-management/staff.svg",
-    },
-    {
-      title: "ผู้ตรวจสอบ",
-      value: summary.auditor,
-      iconColor: "#047857", 
-      color: "#D1FAE5",     
-      icon: "/member-management/auditor.svg",
-    },
-    {
-      title: "ระงับสิทธิ์",
-      value: summary.inactive,
-      iconColor: "#BA1A1A", 
-      color: "#FFDAD6",     
-      icon: "/member-management/inactive.svg",
-    },
-  ]
-: [];
+        summary
+            ? [
+                {
+                    title: "แอดมินระบบ",
+                    value: summary.admin,
+                    iconColor: "#725C00", // สี icon
+                    color: "rgba(255, 209, 0, 0.2)",     // สีพื้นหลังการ์ด hex
+                    icon: "/member-management/admin.svg",
+                },
+                {
+                    title: "เจ้าหน้าที่",
+                    value: summary.staff,
+                    iconColor: "#1D4ED8",
+                    color: "#DBEAFE",
+                    icon: "/member-management/staff.svg",
+                },
+                {
+                    title: "ผู้ตรวจสอบ",
+                    value: summary.auditor,
+                    iconColor: "#047857",
+                    color: "#D1FAE5",
+                    icon: "/member-management/auditor.svg",
+                },
+                {
+                    title: "ระงับสิทธิ์",
+                    value: summary.inactive,
+                    iconColor: "#BA1A1A",
+                    color: "#FFDAD6",
+                    icon: "/member-management/inactive.svg",
+                },
+            ]
+            : [];
 
     useEffect(() => {
         fetch("/api/permission-management/table")
@@ -104,6 +142,10 @@ summary
             .catch(err => console.error("Fetch error:", err));
     }, []);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [selectedRoles, selectedTypes]);
+
 
 
     return (
@@ -112,11 +154,23 @@ summary
 
                 <div className="w-full flex justify-between mr-24">
                     <h1 className="text-3xl font-bold text-[#333847] mb-3 pl-10">จัดการสิทธิ์{" "}{tableData.length}</h1>
-                    <div className="ml-6"><FilterButton onClick={() => console.log("กรองข้อมูล")} /></div>
+                    <div className="ml-6"><FilterButton onClick={() => setIsFilterOpen(true)} />
+                        {/* filter checkbox*/}
+                        <FilterModal
+                            isOpen={isFilterOpen}
+                            onClose={() => setIsFilterOpen(false)}
+                            roles={roles}
+                            types={types}
+                            selectedRoles={selectedRoles}
+                            selectedTypes={selectedTypes}
+                            setSelectedRoles={setSelectedRoles}
+                            setSelectedTypes={setSelectedTypes}
+                        />
+                    </div>
                 </div>
 
                 <p className="text-xl text-muted-foreground mb-12 mx-10 ">จัดการบทบาทและสถานะการเข้าใช้งานระบบของบุคลากร Kaifong AI</p>
-            
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-6 ml-10 mt-10">
                     {topCards.map((item, index) => (
                         <SummaryCard2
@@ -124,7 +178,7 @@ summary
                             icon={item.icon}
                             title={item.title}
                             value={item.value}
-                            iconColor={item.iconColor} 
+                            iconColor={item.iconColor}
                             color={item.color}
                             className="bg-white rounded-xl flex gap-x-5 p-6 border border-[#D1C6AB]/10"
                             styleIcon="rounded-lg"
@@ -139,21 +193,21 @@ summary
                             {pageData.map((row) => (
                                 <tr key={row.id} className="h-20">
                                     <td className="px-6 py-4">
-                                    <span
-                                        className={`
+                                        <span
+                                            className={`
                                                 w-24 text-center px-4 py-2 rounded-full font-bold text-sm font-medium inline-block
                                                 ${row.role === "แอดมิน"
-                                                ? "bg-yellow-100 text-yellow-700"
-                                                : row.role === "เจ้าหน้าที่"
-                                                ? "bg-blue-100 text-blue-700"
-                                                : row.role === "ผู้ตรวจสอบ"
-                                                ? "bg-green-100 text-green-700"
-                                                : "bg-gray-100 text-gray-500"
-                                            }
+                                                    ? "bg-yellow-100 text-yellow-700"
+                                                    : row.role === "เจ้าหน้าที่"
+                                                        ? "bg-blue-100 text-blue-700"
+                                                        : row.role === "ผู้ตรวจสอบ"
+                                                            ? "bg-green-100 text-green-700"
+                                                            : "bg-gray-100 text-gray-500"
+                                                }
                                         `}
-                                    >
-                                        {row.role}
-                                    </span>
+                                        >
+                                            {row.role}
+                                        </span>
                                     </td>
                                     <td className="px-8 py-4 font-bold">{row.name}{" "}{row.lastname}</td>
                                     <td className={`${monoFont.className} px-6 py-4 text-[var(--muted-foreground)]`}>{row.email}</td>

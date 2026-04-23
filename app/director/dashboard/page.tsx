@@ -131,6 +131,7 @@ function Dashboard() {
         color: "#EAEDFF"
       }
     }
+    //เอาออกไปแล้ว
     if (title.includes("เจ้าหน้าที่")) {
       return {
         icon: UsersIcon,
@@ -160,7 +161,7 @@ function Dashboard() {
         <h1 className="text-3xl font-bold text-foreground mb-7">แดชบอร์ด</h1>
 
         {/*การ์ดส่วน1*/}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-12 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           {summary?.topCards.map((item, index) => (
             <SummaryCard
               key={index}
@@ -173,7 +174,7 @@ function Dashboard() {
         </div>
 
         {/*การ์ดส่วน2*/}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-12 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {summary?.bottomCards.map((item, index) => {
             const { icon, color } = getConfig(item.title)
             return (

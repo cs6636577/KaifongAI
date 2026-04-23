@@ -16,7 +16,7 @@ interface SummaryCardProps {
 export default function SummaryCard2({ icon: Icon, title, value, subvalue, color, className, styleIcon, iconColor }: SummaryCardProps) {
   return (
     <div
-      className={className || "bg-white rounded-xl  shadow-xs flex border-[#D9D9D9]  gap-x-5 p-6"}
+      className={className || "w-full min-w-0 bg-white rounded-xl shadow-xs flex gap-5 p-6 min-h-32 items-center overflow-hidden"}
     >
 
       {/*bg+icon*/}
@@ -35,14 +35,14 @@ export default function SummaryCard2({ icon: Icon, title, value, subvalue, color
           />
         )}
       </div>
-      <div className="column">
+      <div className="flex-1 min-w-0 flex flex-col">
         {/* title */}
-        <p className="text-sm text-[#575E72]">{title}</p>
+        <p className="text-sm text-[#575E72] truncate">{title}</p>
 
         {/* value row */}
         <div className="flex items-end gap-x-2">
           <span className="text-3xl font-bold text-[#161B29]">
-             {typeof value === "number" ? String(value).padStart(2, "0") : value}
+              {typeof value === "number" ? value === 0 ? value : String(value).padStart(2, "0") : value}
           </span>
 
           {/* sub */}
