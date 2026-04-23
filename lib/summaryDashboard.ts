@@ -9,54 +9,70 @@ interface SummaryItem{
 }
 //วัน
 export function summaryToday(data: DashboardData): SummaryItem{
-   const today = new Date().toISOString().slice(0, 10);
-   const casesToday = data.cases.filter(c => c.datetime.slice(0, 10) === today).length;
-   const yesterday = new Date();
-   yesterday.setDate(yesterday.getDate() - 1);
-   const yesterdayStr = yesterday.toISOString().slice(0, 10);
+    const today = new Date();
+    const todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                     String(today.getDate()).padStart(2, '0');
+
+    const casesToday = data.cases.filter(c => c.datetime.slice(0, 10) === todayStr).length;
+
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+    const yesterdayStr = yesterday.getFullYear() + '-' + String(yesterday.getMonth() + 1).padStart(2, '0') + '-' +
+                     String(yesterday.getDate()).padStart(2, '0');
 
    const casesYesterday = data.cases.filter(c => c.datetime.slice(0, 10) === yesterdayStr).length;
+   
+   //console.log(today)
+   //console.log(yesterday)
 
    // % เพิ่มขึ้น = (วันนี้ - เมื่อวาน) / เมื่อวาน * 100
    const todayPercent = casesYesterday > 0 
     ? ((casesToday - casesYesterday) / casesYesterday * 100).toFixed(2) 
-    : "100"; // ถ้าเมื่อวานไม่มีเลย ถือว่าเพิ่ม 100%
+    : "0"; 
+    
 
-    return  { title: "เรื่องที่ร้องเรียนวันนี้", value: casesToday, subvalue:todayPercent + "%", color:"#725C00"}
+    return  { title: "เรื่องที่ร้องเรียนวันนี้", value: casesToday, color:"#725C00"}
 
 }
 //เดือน 
 export function summaryMonth(data: DashboardData): SummaryItem{
   const today = new Date();
-  const currentMonth = today.toISOString().slice(0, 7);
+
+  const currentMonth = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0");
   const lastMonthDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-  const lastMonth = lastMonthDate.toISOString().slice(0, 7);
+  const lastMonth = lastMonthDate.getFullYear() + "-" + String(lastMonthDate.getMonth() + 1).padStart(2, "0");
 
   const total = data.cases.filter(c => c.datetime.slice(0, 7) === currentMonth).length;
   const prev = data.cases.filter(c => c.datetime.slice(0, 7) === lastMonth).length;
   // % เพิ่มขึ้น = (เดือนนี้ - เดือนก่อน) / เดือนก่อน * 100
-  const percent = prev > 0 ? ((total - prev) / prev * 100).toFixed(2) : "100";
+  const percent = prev > 0 ? ((total - prev) / prev * 100).toFixed(2) : "0";
+  
+  //console.log("เดือนก่อน "+lastMonth+" มี "+ prev);
+  //console.log("เดือนนี้ "+currentMonth+" มี "+ total);
 
-  return { title: "เรื่องที่ร้องเรียนเดือนนี้", value: total , subvalue: percent + "%", color:"#FFD100"}; 
+  return { title: "เรื่องที่ร้องเรียนเดือนนี้", value: total, color:"#FFD100"}; 
 }
 
 //pending
 export function summaryPending(data: DashboardData): SummaryItem{
   const total = data.cases.filter(c => c.status === "pending").length;
-  return { title: "รอดำเนินการ", value: total, subvalue:"ID: REQ-99" ,color:"#BA1A1A"};
+  return { title: "รอดำเนินการ", value: total ,color:"#BA1A1A"};
 }
 
 //success
 export function summaryResolved(data: DashboardData): SummaryItem {
   const total = data.cases.filter(c => c.status === "resolved").length;
   const percent = ((total / data.cases.length) * 100).toFixed(1);
-  return { title: "แก้ไขเสร็จสิ้นแล้ว", value: total, subvalue: percent + "%",color:"#059669"};
+  return { title: "แก้ไขเสร็จสิ้นแล้ว", value: total,color:"#059669"};
 }
 
 //สัปดาห์
 export function summaryWeek(data: DashboardData): SummaryItem {
   const weekAgo = new Date();
   weekAgo.setDate(weekAgo.getDate() - 7);
+
+  //console.log("สัปดาห์นี้ "+weekAgo.getDate())
+
   const total = data.cases.filter(c => new Date(c.datetime) >= weekAgo).length;
   return { title: "ร้องเรียนใหม่สัปดาห์นี้", value: total};
 }
@@ -79,22 +95,22 @@ export function summaryAvgCloseTime(data: DashboardData): SummaryItem{
   })
   .filter(v => v !== null); 
 
-  const avgCloseTime = times.length > 0
-    ? times.reduce((a, b) => a + b, 0) / times.length / (1000 * 60 * 60 * 24)
-    : 0;
-  console.log(data.case_status_logs[0]);
+  const avgCloseTime = times.length > 0 ? times.reduce((a, b) => a + b, 0) / times.length / (1000 * 60 * 60 * 24) : 0; //ms → sec (÷1000) → min (÷60) → hr (÷60) → day (÷24)
+    //sum(resolved-pending)/(resolvedCases)
+
+  //console.log(data.case_status_logs[0]);
   console.log(Number(avgCloseTime.toFixed(2)));
-  console.log(avgCloseTime);
+  //console.log(avgCloseTime);
   
 
   return { title: "เวลาเฉลี่ยในการปิดงาน", value: Number(avgCloseTime.toFixed(2)), subvalue: "วัน" };
 }
 
-//เจ้าหน้าที่ออนไลน์
+//เจ้าหน้าที่ออนไลน์ ตัดออก (ที่ออนไลน์ ณ ขณะนี้)
+/*
 export function summaryOnlineTechnicians(data: DashboardData): SummaryItem{
-  const total = data.technicians.filter(t => t.status === "approved").length;
-  return { title: "เจ้าหน้าที่ออนไลน์", value:total, subvalue: "คน" };
 }
+*/
 
 //อันดับปัญหา 
 export function getRanking(data: DashboardData) {
@@ -133,9 +149,8 @@ export async function getSummaryDataDashboard(data: DashboardData) {
     summaryToday(data), summaryMonth(data),summaryPending(data),summaryResolved(data)
     ],
     bottomCards: [
-    summaryWeek(data), summaryAvgCloseTime(data), summaryOnlineTechnicians(data)
+    summaryWeek(data), summaryAvgCloseTime(data)
     ],
     RankingCards: getRanking(data) 
   }
 }
-//***ลอจิคบางอันยังต้องแก้ เช่น เวลาปิดการใช้งาน เน้นดึง mock ให้มันเข้า card ก่อน

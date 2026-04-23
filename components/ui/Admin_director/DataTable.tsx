@@ -2,7 +2,8 @@
 type Column = {
   key: string;
   title: string;
-  render?: (value: any, row: any) => React.ReactNode; //ใส่พวกของจำเพาะแต่ละคอลัม เช่น toggle,สีเฉพาะ text มาเปน div ได้เลย
+  className?: string; // ใส่ class text,bg เฉพาะ column
+  render?: (value: any, row: any) => React.ReactNode; //ใส่พวกของจำเพาะแต่ละคอลัม เช่น toggle มาเปน div ได้เลย
 };
 
 type TableProps = {
@@ -24,18 +25,19 @@ export default function DataTable({ columns, data, theadClassName, className }: 
       </thead>
 
       <tbody>
-        {data.map((row, i) => (
-          <tr key={i}>
-            {columns.map((col) => (
-              <td key={col.key}  className={`text-left align-middle px-6 py-4 ${className || ""}`}>
-                {col.render
-                  ? col.render(row[col.key], row)
-                  : row[col.key]}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+      {data.map((row, i) => (
+        <tr key={i}>
+          {columns.map((col) => (
+            <td
+              key={col.key}
+              className={`text-left align-middle px-5 py-4 md:px-4 ${col.className || ""} ${className || ""}`}
+            >
+              {col.render ? col.render(row[col.key], row) : row[col.key]}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
     </table>
   );
 }
