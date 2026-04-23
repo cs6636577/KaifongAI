@@ -1,8 +1,15 @@
 import { MdOutlineEdit } from "react-icons/md";
 
-export default function EditButton() {
+type Props = {
+  onClick?: () => void;
+};
+
+export default function EditButton({ onClick }: Props) {
   return (
-    <button className="p-2 rounded-3xl hover:bg-gray-100 transition cursor-pointer">
+    <button
+      onClick={onClick}
+      className="p-2 rounded-3xl hover:bg-gray-100 transition cursor-pointer"
+    >
       <MdOutlineEdit className="w-6 h-6" />
     </button>
   );

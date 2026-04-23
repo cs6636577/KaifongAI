@@ -2,15 +2,13 @@
 import { useEffect, useState } from "react";
 import DataTable from "@/components/ui/Admin_director/DataTableBase"
 import ComplaintPagination from "@/components/ui/Admin_director/PageNavigation";
-import FilterButton from "@/components/ui/Admin_director/FilterButton"
 import IOSSwitch from "@/components/ui/Admin_director/Toggle";
 import DeleteButton from "@/components/ui/Admin_director/DeleteButton"
 import EditButton from "@/components/ui/Admin_director/EditButton"
 import AddButton from "@/components/ui/Admin_director/AddButton";
 import SimpleDropDown from "@/components/ui/Admin_director/SimpleDropDown";
-import ViewToggle from "@/components/ui/Admin_director/View" ;
 import SearchInput from "@/components/ui/Admin_director/Search";
-
+import AddProblemTypeModal from "@/components/ui/Admin_director/ProblemTypeModal";
 
 export interface Problem {
     id: number;
@@ -32,17 +30,40 @@ function ProblemType() {
     const [currentPage, setCurrentPage] = useState(1);
     const limit = 5;
 
-    const pageData = tableData.slice((currentPage - 1) * limit, currentPage * limit);
-    const totalPages = Math.ceil(tableData.length / limit);
 
-    const problemImageMap: Record<string, string> = {
-        "ไฟฟ้าขัดข้อง": "⚡",
-        "ถนนชำรุด": "🛣️",
-        "น้ำประปาขัดข้อง": "💧" ,
-        "ขยะและสิ่งแวดล้อม": "🗑️",
-        "ต้นไม้และพื้นที่สาธารณะ": "🌳",
-        "ท่อระบายน้ำ": "🕳️" ,
-    };
+    //search
+    const [openModal, setOpenModal] = useState(false);
+    const [editingItem, setEditingItem] = useState<any>(null);
+
+    const [search, setSearch] = useState("");
+
+    //filter
+    const [statusFilter, setStatusFilter] = useState("");
+
+
+
+
+    const [pendingRemoval, setPendingRemoval] = useState<Set<number>>(new Set());
+
+    const filteredData = tableData.filter((item) => {
+        const matchSearch = item.name.toLowerCase().includes(search.toLowerCase());
+
+        // row ที่เพิ่ง toggle → ค้างไว้ก่อน ไม่ filter ออก
+        if (pendingRemoval.has(item.id)) return matchSearch;
+
+        const matchStatus =
+            statusFilter === "" ? true
+                : statusFilter === "active" ? item.is_active
+                    : !item.is_active;
+        return matchSearch && matchStatus;
+    });
+
+    const totalPages = Math.ceil(filteredData.length / limit);
+    const pageData = filteredData.slice((currentPage - 1) * limit, currentPage * limit);
+
+
+
+
 
     //หัวตาราง 
     const columns = [
@@ -52,6 +73,16 @@ function ProblemType() {
         { key: "count", title: "จำนวนคำร้องเรียน" },
         { key: "manage", title: "จัดการ" },
     ];
+
+    const problemImageMap: Record<string, string> = {
+        "ไฟฟ้าขัดข้อง": "⚡",
+        "ถนนชำรุด": "🛣️",
+        "น้ำประปาขัดข้อง": "💧",
+        "ขยะและสิ่งแวดล้อม": "🗑️",
+        "ต้นไม้และพื้นที่สาธารณะ": "🌳",
+        "ท่อระบายน้ำ": "🕳️",
+    };
+
 
 
     useEffect(() => {
@@ -76,15 +107,26 @@ function ProblemType() {
     }, []);
 
 
+
+
+
+
+
     return (
         <div className="h-screen bg-background">
             <div className="w-full px-8 py-8 mx-auto">
-                
-                    <h1 className="text-3xl font-bold text-[#333847] mb-3 pl-10">จัดการประเภทปัญหา</h1>
-                    
+
+                <h1 className="text-3xl font-bold text-[#333847] mb-3 pl-10">จัดการประเภทปัญหา</h1>
+
                 <div className="w-full flex justify-between mr-24">
-                <p className="text-xl text-muted-foreground  mx-10 ">ทั้งหมด{" "}{tableData.length}{" "}ประเภท</p>
-                <div className="ml-6"><AddButton onClick={() => console.log("เพิ่มประเภท")} /></div>
+                    <p className="text-xl text-muted-foreground  mx-10 ">ทั้งหมด{" "}{tableData.length}{" "}ประเภท</p>
+                    <div className="ml-6"><AddButton onClick={() => { setEditingItem(null); setOpenModal(true); }} />
+                        <AddProblemTypeModal
+                            isOpen={openModal}
+                            onClose={() => setOpenModal(false)}
+                            initialData={editingItem}
+                        />
+                    </div>
                 </div>
 
                 <div className="flex gap-3 mb-6 ml-10 mt-4">
@@ -102,12 +144,22 @@ function ProblemType() {
                 </div>
                 <div className="ml-10 flex justify-between mt-14">
                     <div className="flex gap-6">
-                      <SearchInput />
-                      <SimpleDropDown />
+                        <SearchInput
+                            value={search}
+                            onChange={(e) => {
+                                setSearch(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                        />
+                        <SimpleDropDown
+                            value={statusFilter}
+                            onChange={(value) => {
+                                setStatusFilter(value);
+                                setCurrentPage(1);
+                            }}
+                        />
                     </div>
-                    <div>
-                      <ViewToggle />
-                    </div>
+
                 </div>
                 {/* table */}
                 <div className="overflow-x-auto mt-10 ml-6 shadow-xl rounded-2xl">
@@ -123,8 +175,8 @@ function ProblemType() {
                                 >
                                     <td className="px-8 py-4">
                                         <div className="flex justify-between gap-3">
-                                        <span>{row.id}</span>
-                                        <span className="text-2xl">{ problemImageMap[row.name] }</span>
+                                            <span>{row.id}</span>
+                                            <span className="text-2xl">{problemImageMap[row.name]}</span>
                                         </div>
 
                                     </td>
@@ -139,19 +191,31 @@ function ProblemType() {
                                                 </div>
 
                                                 <IOSSwitch
-
                                                     checked={row.is_active}
                                                     onChange={(e) => {
                                                         const checked = e.target.checked;
 
                                                         setTableData(prev =>
                                                             prev.map(item =>
-                                                                item.id === row.id
-                                                                    ? { ...item, is_active: checked }
-                                                                    : item
+                                                                item.id === row.id ? { ...item, is_active: checked } : item
                                                             )
                                                         );
+
+                                                        // ถ้ามี filter เปิดอยู่ และ toggle จะทำให้ row หลุด filter
+                                                        // → ค้าง row ไว้ 250ms (= duration-200 + เผื่อนิดหน่อย)
+                                                        if (statusFilter !== "") {
+                                                            setPendingRemoval(prev => new Set(prev).add(row.id));
+                                                            setTimeout(() => {
+                                                                setPendingRemoval(prev => {
+                                                                    const next = new Set(prev);
+                                                                    next.delete(row.id);
+                                                                    return next;
+                                                                });
+                                                            }, 400);
+                                                        }
                                                     }}
+
+
                                                 />
 
 
@@ -162,7 +226,18 @@ function ProblemType() {
                                     <td className="px-6 py-4 text-[var(--foreground2)]">
                                         <div className="flex items-center justify-between">
                                             <div className={`flex items-center gap-3 ${!row.is_active ? "pointer-events-none opacity-50" : ""} `}>
-                                                <EditButton />
+                                                <EditButton
+                                                    onClick={() => {
+                                                        setEditingItem({
+                                                            id: row.id,
+                                                            name: row.name,
+                                                            description: row.description,
+                                                            emoji: problemImageMap[row.name] || "📝",
+                                                        });
+
+                                                        setOpenModal(true);
+                                                    }}
+                                                />
                                                 <DeleteButton />
                                             </div>
                                         </div>

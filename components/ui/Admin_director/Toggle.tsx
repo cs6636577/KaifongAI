@@ -1,44 +1,51 @@
-import { styled } from "@mui/material/styles";
-import Switch, { SwitchProps } from "@mui/material/Switch";
+"use client";
 
-const IOSSwitch = styled((props: SwitchProps) => (
-  <Switch disableRipple {...props} />
-))(() => ({
-  width: 50,
-  height: 28,
-  padding: 0,
+import React from "react";
 
-  "& .MuiSwitch-switchBase": {
-    padding: 0,
-    margin: 2,
-    transitionDuration: "200ms",
+type IOSSwitchProps = {
+  checked: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
+};
 
-    "&.Mui-checked": {
-      transform: "translateX(22px)", 
-      color: "#fff",
+export default function IOSSwitch({
+  checked,
+  onChange,
+  disabled,
+}: IOSSwitchProps) {
+  return (
+    <label className="relative inline-flex items-center cursor-pointer">
+      <input
+        type="checkbox"
+        className="sr-only peer"
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+      />
 
-      "& + .MuiSwitch-track": {
-        backgroundColor: "#FFD100",
-        opacity: 1,
-        border: 0,
-      },
-    },
-  },
+      {/* track */}
+      <div
+        className="
+          w-[50px] h-[28px]
+          bg-[#E9E9EA]
+          rounded-full
+          transition-colors duration-200
+          peer-checked:bg-[#FFD100]
+        "
+      />
 
-  "& .MuiSwitch-thumb": {
-    width: 24,
-    height: 24,
-    backgroundColor: "#fff",
-    boxShadow: "none",
-  },
-
-  "& .MuiSwitch-track": {
-    borderRadius: 14,
-    backgroundColor: "#E9E9EA",
-    opacity: 1,
-    boxShadow: "none",
-    transition: "background-color 200ms ease",
-  },
-}));
-
-export default IOSSwitch;
+      {/* thumb */}
+      <div
+        className="
+          absolute left-[2px] top-[2px]
+          w-[24px] h-[24px]
+          bg-white
+          rounded-full
+          transition-transform duration-200 ease-in-out
+          peer-checked:translate-x-[22px]
+          shadow-sm
+        "
+      />
+    </label>
+  );
+}
