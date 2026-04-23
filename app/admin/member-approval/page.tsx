@@ -23,14 +23,6 @@ const thaiFont = Sarabun({
 
 
 //สำหรับใส่ค่าส่งไปที่ components card ต่างๆ อิงส่วน ui และเนื้อหาจากหน้า ที่เป็นส่วนคำนวณ
-interface SummaryItem {
-  id: number;
-  icon?: ComponentType<SVGProps<SVGSVGElement>> | string;
-  title: string;
-  value: number | string;
-  subvalue: number;
-  color?: string;
-}
 
 interface SummaryData {
   requestToday: number;
