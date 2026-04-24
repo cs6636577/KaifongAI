@@ -116,15 +116,17 @@ const UserManualPage = () => {
     const pageSize = 3
 
     const filteredData = React.useMemo(() => {
-        return data.filter((item) => {
-        const keyword = search.toLowerCase();
+      const keyword = search.toLowerCase().trim();
 
+      if (!keyword) return data;
+
+      return data.filter((item) => {
         return (
-            item.title.toLowerCase().includes(keyword) ||
-            item.description.toLowerCase().includes(keyword) ||
-            item.filetype?.toLowerCase().includes(keyword)
-            );
-        });
+          item.title.toLowerCase().includes(keyword) ||
+          item.description.toLowerCase().includes(keyword) ||
+          item.filetype?.toLowerCase().includes(keyword)
+        );
+      });
     }, [search]);
     
 
@@ -132,8 +134,8 @@ const UserManualPage = () => {
 
       const paginatedData = React.useMemo(() => {
         const startIndex = (currentPage - 1) * pageSize
-        return data.slice(startIndex, startIndex + pageSize)
-      }, [data, currentPage])
+        return filteredData.slice(startIndex, startIndex + pageSize);
+      }, [filteredData, currentPage])
 
         React.useEffect(() => {
           setCurrentPage(1)
