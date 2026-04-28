@@ -20,6 +20,7 @@ export default function ComplaintToolbar({
   onFilterClick,
   onExportClick,
 }: ComplaintToolbarProps) {
+
   return (
     <div className="flex items-center justify-between gap-6 mb-6 pl-10">
       <ComplaintStatusTabs

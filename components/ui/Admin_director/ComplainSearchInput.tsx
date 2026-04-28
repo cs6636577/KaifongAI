@@ -9,7 +9,7 @@ type ComplaintSearchInputProps = {
 export default function ComplaintSearchInput({
   value,
   onChange,
-  placeholder = "ค้นหาเลขที่คำร้อง หรือชื่อผู้ยื่น...",
+  placeholder = "ค้นหาเลขที่คำร้อง ชื่อผู้ยื่น หรือชื่อเจ้าหน้าที่...",
   className = "",
   inputClassName = "",
 }: ComplaintSearchInputProps) {

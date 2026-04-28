@@ -10,6 +10,7 @@ export const complaints: Complaint[] = [
       phone: "0812345678",
       status: "กำลังดำเนินการ",
       staff: "วิชัย มุ่งมั่น",
+      types: "ไฟฟ้าขัดข้อง",
     },
     {
       id: "2",
@@ -20,6 +21,7 @@ export const complaints: Complaint[] = [
       phone: "0823456789",
       status: "กำลังดำเนินการ",
       staff: "ศุภกร แสนดี",
+      types: "ถนนชำรุด",
     },
     {
       id: "3",
@@ -30,6 +32,7 @@ export const complaints: Complaint[] = [
       phone: "0834567890",
       status: "ไม่รับเรื่อง",
       staff: "อาคม มีชัย",
+      types: "น้ำประปาขัดข้อง",
     },
     {
       id: "4",
@@ -40,6 +43,7 @@ export const complaints: Complaint[] = [
       phone: "0845678901",
       status: "กำลังดำเนินการ",
       staff: "มยุรี ทองใบ",
+      types: "ขยะและสิ่งแวดล้อม",
     },
     {
       id: "5",
@@ -50,6 +54,7 @@ export const complaints: Complaint[] = [
       phone: "0856789012",
       status: "กำลังดำเนินการ",
       staff: "กิตติ รุ่งเรือง",
+      types: "ไฟฟ้าขัดข้อง",
     },
     {
       id: "6",
@@ -60,6 +65,7 @@ export const complaints: Complaint[] = [
       phone: "0867890123",
       status: "กำลังดำเนินการ",
       staff: "วิชัย มุ่งมั่น",
+      types: "ท่อระบายน้ำ"
     },
     {
       id: "7",
@@ -70,6 +76,7 @@ export const complaints: Complaint[] = [
       phone: "0878901234",
       status: "ไม่รับเรื่อง",
       staff: "ศุภกร แสนดี",
+      types: "ขยะและสิ่งแวดล้อม"
     },
     {
       id: "8",
@@ -80,6 +87,7 @@ export const complaints: Complaint[] = [
       phone: "0889012345",
       status: "กำลังดำเนินการ",
       staff: "อาคม มีชัย",
+      types: "ต้นไม้และพื้นที่สาธารณะ"
     },
     {
       id: "9",
@@ -90,6 +98,7 @@ export const complaints: Complaint[] = [
       phone: "0890123456",
       status: "ประเมินผลเสร็จสิ้น",
       staff: "มยุรี ทองใบ",
+      types: "ไฟฟ้าขัดข้อง",
     },
     {
       id: "10",
@@ -100,6 +109,7 @@ export const complaints: Complaint[] = [
       phone: "0801234567",
       status: "กำลังดำเนินการ",
       staff: "กิตติ รุ่งเรือง",
+      types: "ถนนชำรุด",
     },
     {
       id: "11",
@@ -110,6 +120,7 @@ export const complaints: Complaint[] = [
       phone: "0812345678",
       status: "กำลังดำเนินการ",
       staff: "วิชัย มุ่งมั่น",
+      types: "ท่อระบายน้ำ"
     },
     {
       id: "12",
@@ -120,6 +131,7 @@ export const complaints: Complaint[] = [
       phone: "0823456789",
       status: "ประเมินผลเสร็จสิ้น",
       staff: "ศุภกร แสนดี",
+      types: "ไฟฟ้าขัดข้อง",
     },
     {
       id: "13",
@@ -130,6 +142,7 @@ export const complaints: Complaint[] = [
       phone: "0834567890",
       status: "กำลังดำเนินการ",
       staff: "อาคม มีชัย",
+      types: "ขยะและสิ่งแวดล้อม"
     },
     {
       id: "14",
@@ -140,6 +153,7 @@ export const complaints: Complaint[] = [
       phone: "0845678901",
       status: "กำลังดำเนินการ",
       staff: "มยุรี ทองใบ",
+      types: "น้ำประปาขัดข้อง",
     },
     {
       id: "15",
@@ -150,6 +164,7 @@ export const complaints: Complaint[] = [
       phone: "0856789012",
       status: "กำลังดำเนินการ",
       staff: "กิตติ รุ่งเรือง",
+      types: "ไฟฟ้าขัดข้อง",
     },
     {
       id: "16",
@@ -160,6 +175,7 @@ export const complaints: Complaint[] = [
       phone: "0867890123",
       status: "ประเมินผลเสร็จสิ้น",
       staff: "วิชัย มุ่งมั่น",
+      types: "ต้นไม้และพื้นที่สาธารณะ"
     },
     {
       id: "17",
@@ -170,6 +186,7 @@ export const complaints: Complaint[] = [
       phone: "0878901234",
       status: "ไม่รับเรื่อง",
       staff: "ศุภกร แสนดี",
+      types: "ขยะและสิ่งแวดล้อม"
     },
     {
       id: "18",
@@ -180,6 +197,7 @@ export const complaints: Complaint[] = [
       phone: "0889012345",
       status: "กำลังดำเนินการ",
       staff: "อาคม มีชัย",
+      types: "น้ำประปาขัดข้อง",
     },
     {
       id: "19",
@@ -190,6 +208,7 @@ export const complaints: Complaint[] = [
       phone: "0890123456",
       status: "กำลังดำเนินการ",
       staff: "มยุรี ทองใบ",
+      types: "ไฟฟ้าขัดข้อง",
     },
     {
       id: "20",
@@ -200,6 +219,7 @@ export const complaints: Complaint[] = [
       phone: "0801234567",
       status: "กำลังดำเนินการ",
       staff: "กิตติ รุ่งเรือง",
+      types: "ถนนชำรุด",
     },
     {
       id: "21",
@@ -210,6 +230,7 @@ export const complaints: Complaint[] = [
       phone: "0812345678",
       status: "ประเมินผลเสร็จสิ้น",
       staff: "วิชัย มุ่งมั่น",
+      types: "ท่อระบายน้ำ"
     },
     {
       id: "22",
@@ -220,6 +241,7 @@ export const complaints: Complaint[] = [
       phone: "0823456789",
       status: "กำลังดำเนินการ",
       staff: "ศุภกร แสนดี",
+      types: "ท่อระบายน้ำ"
     },
     {
       id: "23",
@@ -230,6 +252,7 @@ export const complaints: Complaint[] = [
       phone: "0834567890",
       status: "กำลังดำเนินการ",
       staff: "อาคม มีชัย",
+      types: "ไฟฟ้าขัดข้อง",
     },
     {
       id: "24",
@@ -240,6 +263,7 @@ export const complaints: Complaint[] = [
       phone: "0845678901",
       status: "ประเมินผลเสร็จสิ้น",
       staff: "มยุรี ทองใบ",
+      types: "ขยะและสิ่งแวดล้อม"
     },
     {
       id: "25",
@@ -250,5 +274,6 @@ export const complaints: Complaint[] = [
       phone: "0856789012",
       status: "กำลังดำเนินการ",
       staff: "กิตติ รุ่งเรือง",
+      types: "ถนนชำรุด",
     }
 ]
