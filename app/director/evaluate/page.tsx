@@ -22,7 +22,17 @@ const columns = [
   { key: "phone", title: "ติดต่อ" },
   { key: "status", title: "สถานะ" },
   { key: "staff", title: "เจ้าหน้าที่ที่รับผิดชอบ" },
+  { key: "types", title: "ประเภทปัญหา"}
 ]
+
+const problemImageMap: Record<string, string> = {
+  "ไฟฟ้าขัดข้อง": "⚡",
+  "ถนนชำรุด": "🛣️",
+  "น้ำประปาขัดข้อง": "💧",
+  "ขยะและสิ่งแวดล้อม": "🗑️",
+  "ต้นไม้และพื้นที่สาธารณะ": "🌳",
+  "ท่อระบายน้ำ": "🕳️",
+};
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<"all" | "pending">("all")
@@ -31,12 +41,15 @@ export default function Page() {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
 
   const [selectedStatus, setSelectedStatus] = useState<string[]>([])
+  const [selectedProblems, setSelectedProblems] = useState<string[]>([])
 
   const pageSize = 5
 
   const statusOptions = Array.from(
     new Set(complaints.map((item) => item.status))
   )
+
+  const problemOptions = Object.keys(problemImageMap)
 
   const filteredData = useMemo(() => {
     let result = complaints
@@ -47,6 +60,7 @@ export default function Page() {
       )
     }
 
+    //ถ้าพี่เขาให้แก้serch filterให้มาแก้ที่นี่ว่าอยากให้serch
     if (search.trim()) {
       result = result.filter(
         (item) =>
@@ -62,8 +76,14 @@ export default function Page() {
       )
     }
 
+    if (selectedProblems.length > 0) {
+      result = result.filter((item) =>
+      selectedProblems.includes(item.types)
+    )
+  }
+
     return result
-  }, [activeTab, search, selectedStatus])
+  }, [activeTab, search, selectedStatus, selectedProblems])
 
   const totalPages = Math.ceil(filteredData.length / pageSize)
 
@@ -74,7 +94,7 @@ export default function Page() {
 
   useEffect(() => {
     setCurrentPage(1)
-  }, [search, activeTab, selectedStatus])
+  }, [search, activeTab, selectedStatus, selectedProblems])
 
   return (
     <div className={`${thaiFont.className} min-h-screen bg-background`}>
@@ -93,13 +113,18 @@ export default function Page() {
           onExportClick={() => console.log("export")}
         />
 
-        <EvaluateFilterModal
-          isOpen={isFilterOpen}
-          onClose={() => setIsFilterOpen(false)}
-          options={statusOptions}
-          selected={selectedStatus}
-          setSelected={setSelectedStatus}
-        />
+      <EvaluateFilterModal
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
+
+        statusOptions={statusOptions}
+        selectedStatus={selectedStatus}
+        setSelectedStatus={setSelectedStatus}
+
+        problemOptions={problemOptions}
+        selectedProblems={selectedProblems}
+        setSelectedProblems={setSelectedProblems}
+      />
 
         <ComplaintTable
           columns={columns}

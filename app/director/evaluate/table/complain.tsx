@@ -14,6 +14,7 @@ export type Complaint = {
   phone: string
   status: ComplaintStatus
   staff: string
+  types: string
 
   description?: string
   location?: string
