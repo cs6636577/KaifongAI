@@ -11,50 +11,134 @@ import { FaPlus } from 'react-icons/fa6'
 import { Sarabun} from "next/font/google";
 
 const thaiFont = Sarabun({
-  subsets: ["thai"],
-  weight: ["400", "500", "700"],
+    subsets: ["thai"],
+    weight: ["400", "500", "700"],
 });
 
 type FileItem = {
-  title: string
-  description: string
-  date: string
-  datasize: string
-  filetype?: string
-  viewcount: string
-  image?: string
+    title: string
+    description: string
+    date: string
+    datasize: string
+    filetype?: string
+    viewcount: string
+    image?: string
 }
 
 const data: FileItem[] = [
-  {
-    title: "คู่มือการรับเรื่องร้องเรียนเบื้องต้น",
-    description: "อธิบายขึ้นตอนการรับเรื่อง การตรวจสอบข้อมูลพื้นฐาน และการคัดกรองประเภท...",
-    date: "12 Oct 2023",
+    {
+    title: "คู่มือการรับคำร้องสำหรับเจ้าหน้าที่",
+    description: "อธิบายขั้นตอนการรับเรื่อง ตรวจสอบข้อมูลเบื้องต้น และบันทึกคำร้องเข้าสู่ระบบอย่างถูกต้อง",
+    date: "10 Oct 2023",
     datasize: "2.4 MB",
     filetype: "PDF",
-    viewcount: "1240",
+    viewcount: "3,520",
   },
   {
-    title: "คู่มือการอัพเดตสถานะเรื่องร้อง...",
-    description: "คู่มือสำหรับเจ้าหน้าที่ในการเปลี่ยนแปลงสถานะ แจ้งความคืบหน้า และปิดงานอย่า...",
-    date: "14 Oct 2023",
+    title: "Infographic ขั้นตอนการตรวจสอบคำร้อง",
+    description: "สรุปลำดับการตรวจสอบคำร้อง ตั้งแต่รับเรื่องจนถึงส่งต่อหน่วยงานที่เกี่ยวข้อง",
+    date: "18 Oct 2023",
+    datasize: "1920x1080 px",
+    filetype: "IMAGE",
+    viewcount: "2,430",
+  },
+  {
+    title: "คู่มือการมอบหมายงานให้เจ้าหน้าที่ภาคสนาม",
+    description: "แนะนำวิธีเลือกผู้รับผิดชอบ แจ้งเตือนงาน และติดตามความคืบหน้าของภารกิจ",
+    date: "02 Nov 2023",
     datasize: "1.8 MB",
     filetype: "PDF",
-    viewcount: "890",
+    viewcount: "2,980",
   },
   {
-    title: "Infographic ขั้นตอนการทำงาน",
-    description: "สรุปขั้นตอนการทำงานทั้งหมดแบบเห็นภาพเดียวจบ เข้าใจง่าย เหมาะสำหรับบอร์ด...",
-    date: "1920x1080 px",
-    datasize: "4.5 MB",
+    title: "ขั้นตอนการอัปเดตสถานะคำร้อง",
+    description: "อธิบายการเปลี่ยนสถานะ เช่น กำลังดำเนินการ เสร็จสิ้น หรือไม่รับเรื่อง พร้อมเงื่อนไขการใช้งาน",
+    date: "12 Nov 2023",
+    datasize: "1.1 MB",
+    filetype: "PDF",
+    viewcount: "2,110",
+  },
+  {
+    title: "Infographic การส่งต่อหน่วยงานที่เกี่ยวข้อง",
+    description: "แสดงขั้นตอนการประสานงานและส่งต่อคำร้องไปยังหน่วยงานภายในอย่างรวบรัด",
+    date: "20 Nov 2023",
+    datasize: "1600x900 px",
     filetype: "IMAGE",
-    viewcount: "2,105",
-  }
+    viewcount: "1,760",
+  },
+  {
+    title: "การแนบเอกสารประกอบการพิจารณา",
+    description: "วิธีอัปโหลดไฟล์หลักฐาน รูปภาพ เอกสารเพิ่มเติม และข้อควรระวังในการจัดเก็บข้อมูล",
+    date: "28 Nov 2023",
+    datasize: "1.5 MB",
+    filetype: "PDF",
+    viewcount: "1,490",
+  },
+  {
+    title: "คู่มือการใช้งานแดชบอร์ดเจ้าหน้าที่",
+    description: "อธิบายการดูสถิติคำร้อง รายงานประจำวัน และข้อมูลสรุปเพื่อการตัดสินใจ",
+    date: "15 Dec 2023",
+    datasize: "2.0 MB",
+    filetype: "PDF",
+    viewcount: "2,640",
+  },
+  {
+    title: "Infographic KPI การดำเนินงานประจำเดือน",
+    description: "สรุปตัวชี้วัดสำคัญ เช่น เวลาปิดงาน จำนวนคำร้อง และประสิทธิภาพการทำงาน",
+    date: "05 Jan 2024",
+    datasize: "2560x1440 px",
+    filetype: "IMAGE",
+    viewcount: "2,920",
+  },
+  {
+    title: "ช่องทางติดต่อผู้ดูแลระบบ",
+    description: "รวมข้อมูลติดต่อทีมสนับสนุนระบบ เวลาให้บริการ และขั้นตอนแจ้งปัญหาการใช้งาน",
+    date: "12 Jan 2024",
+    datasize: "820 KB",
+    filetype: "PDF",
+    viewcount: "1,340",
+  },
+  {
+    title: "แนวทางการตอบกลับผู้ร้องเรียนอย่างมืออาชีพ",
+    description: "ตัวอย่างการสื่อสารกับประชาชน การแจ้งผลดำเนินการ และการตอบกลับอย่างสุภาพชัดเจน",
+    date: "08 Feb 2024",
+    datasize: "1.7 MB",
+    filetype: "PDF",
+    viewcount: "1,980",
+  },
 ]
 
 
-const StaffManualPage = () => {
+const ReporterManualPage = () => {
     const [currentPage, setCurrentPage] = React.useState(1)
+    const [activeTab, setActiveTab] = React.useState<"all" | "pending">("all")
+    const [search, setSearch] = React.useState("")
+    const pageSize = 3
+
+    const filteredData = React.useMemo(() => {
+        const keyword = search.toLowerCase().trim();
+        
+        if (!keyword) return data;
+        
+        return data.filter((item) => {
+            return (
+                item.title.toLowerCase().includes(keyword) ||
+                item.description.toLowerCase().includes(keyword) ||
+                item.filetype?.toLowerCase().includes(keyword)
+            );
+        });
+    }, [search]);
+
+    const totalPages = Math.ceil(data.length / pageSize)
+
+    const paginatedData = React.useMemo(() => {
+        const startIndex = (currentPage - 1) * pageSize
+            return filteredData.slice(startIndex, startIndex + pageSize);
+    }, [filteredData, currentPage])
+
+    React.useEffect(() => {
+            setCurrentPage(1)
+    }, [activeTab, search])
 
   return (
     <div className={`${thaiFont.className} min-h-screen bg-background flex  justify-center`}>
@@ -94,19 +178,22 @@ const StaffManualPage = () => {
             {/* </div>  */}
 
             <div className='mt-8'>
-                <ManualToolbar/>
+                <ManualToolbar
+                    search={search}
+                    setSearch={setSearch}
+                />
             </div>
 
             <div className='flex flex-row gap-10 mt-10'>
-                {data.map((item, index) => (
+                {paginatedData.map((item, index) => (
                     <FileCard key={index} item={item} />
                 ))}
             </div>
 
             <div className='mb-10 mt-40'>
                 <ComplaintPagination
-                    currentPage={1}
-                    totalPages={3}
+                    currentPage={currentPage}
+                    totalPages={totalPages}
                     onPageChange={setCurrentPage}
                 />
             </div>
@@ -115,4 +202,4 @@ const StaffManualPage = () => {
   )
 }
 
-export default StaffManualPage
+export default ReporterManualPage
