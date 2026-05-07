@@ -16,7 +16,7 @@ export default function SummaryCard({ title, value, subvalue, color }: SummaryCa
       <p className="text-md text-[#575E72] mb-1 truncate">{title}</p>
 
       {/* value row */}
-      <div className="flex items-end justify-between gap-2 sm:gap-4 lg:gap-x-16 xl:gap-x-24">
+      <div className="flex items-end  gap-2 sm:gap-4 lg:gap-x-16 xl:gap-x-4">
         <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-[var(--foreground)]">
           {typeof value === "number"
             ? value === 0
@@ -27,7 +27,7 @@ export default function SummaryCard({ title, value, subvalue, color }: SummaryCa
 
         {/* sub */}
         {subvalue && (
-          <span className="text-[10px] sm:text-xs text-gray-400 my-1 text-right truncate">
+          <span className="text-[10px] sm:text-xs text-gray-400 my-1 ">
             {subvalue}
           </span>
         )}

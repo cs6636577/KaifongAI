@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
+import th from "emoji-picker-react/dist/data/emojis-th";
 
 type Props = {
   isOpen: boolean;
@@ -95,9 +96,10 @@ export default function AddProblemTypeModal({
           {/* picker */}
           <div className="border rounded-2xl overflow-hidden">
             <EmojiPicker
+              emojiData={th}
               width="100%"
               height={300}
-              searchPlaceHolder="search Emoji"
+              searchPlaceHolder="ค้นหา อีโมจิ"
               previewConfig={{ showPreview: false }}
               onEmojiClick={(emojiData) =>
                 setTypeEmoji(emojiData.emoji)
