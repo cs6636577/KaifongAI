@@ -6,12 +6,12 @@ import RankingCard from "@/components/ui/Admin_director/RankingCard";
 import DataTable from "@/components/ui/Admin_director/DataTable";
 import { Case } from "../../../services/DataProvider";
 import type { ComponentType, SVGProps } from 'react'
-import { ClockIcon, ClipboardDocumentListIcon, UsersIcon, LightBulbIcon, TrashIcon, FunnelIcon } from '@heroicons/react/24/outline';
+import { ClockIcon, ClipboardDocumentListIcon, LightBulbIcon, TrashIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import { BsTree } from "react-icons/bs";
 import { IoWaterOutline } from "react-icons/io5";
 import { FaTools } from "react-icons/fa";
-import { FabButton } from "@/components/ui/Admin_director/FabButton";
 import { Sarabun } from "next/font/google";
+import { CalendarCheck,CalendarPlus, CalendarDays} from "lucide-react";
 
 const thaiFont = Sarabun({
   subsets: ["thai"],
@@ -168,16 +168,25 @@ function Dashboard() {
         color: "#FFE07F"
       }
     }
-    if (title.includes("ร้องเรียน")) {
+
+    if (title.includes("วันนี้")) {
       return {
-        icon: ClipboardDocumentListIcon,
+        icon: CalendarCheck,
         color: "#EAEDFF"
       }
     }
-    if (title.includes("เจ้าหน้าที่")) {
+
+    if (title.includes("สัปดาห์")) {
       return {
-        icon: UsersIcon,
-        color: "#EAEDFF"
+        icon: CalendarPlus,
+        color: "#FFE07F"
+      }
+    }
+
+    if (title.includes("เดือน")) {
+      return {
+        icon:  CalendarDays,
+        color: "#dadcea"
       }
     }
 
@@ -201,22 +210,28 @@ function Dashboard() {
     <div className={`${thaiFont.className} min-h-screen bg-background flex  justify-center`}>
       <div className="max-w-7xl mx-3 px-6 sm:px-6 lg:px-8 py-8 w-full">
         <h1 className="text-3xl font-bold text-foreground mb-7">แดชบอร์ด</h1>
+        <h2 className="text-xl font-bold text-foreground mx-12 mb-4">
+         จำนวนเรื่องร้องเรียน
+        </h2>
 
         {/*การ์ดส่วน1*/}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-12 mb-6">
-          {summary?.topCards.map((item, index) => (
-            <SummaryCard
-              key={index}
-              title={item.title}
-              value={item.value}
-              subvalue={item.subvalue}
-              color={item.color}
-            />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mx-12 mb-6">
+          {summary?.topCards.map((item, index) => {
+            return (
+              <SummaryCard
+                key={index}
+                title={item.title}
+                value={item.value}
+                subvalue={item.subvalue}
+                color={item.color}
+              />
+            );
+          })}
         </div>
+        
 
         {/*การ์ดส่วน2*/}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mx-12 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mx-12 mb-6">
           {summary?.bottomCards.map((item, index) => {
             const { icon, color } = getConfig(item.title)
             return (

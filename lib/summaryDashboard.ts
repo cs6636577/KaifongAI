@@ -103,7 +103,7 @@ export function summaryAvgCloseTime(data: DashboardData): SummaryItem{
   //console.log(avgCloseTime);
   
 
-  return { title: "เวลาเฉลี่ยในการปิดงาน", value: Number(avgCloseTime.toFixed(2)), subvalue: "วัน" };
+  return { title: "เวลาเฉลี่ยในการปิดงาน", value: Number(avgCloseTime.toFixed(2)), subvalue: "วัน" , color:"#FFD100"};
 }
 
 //เจ้าหน้าที่ออนไลน์ ตัดออก (ที่ออนไลน์ ณ ขณะนี้)
@@ -146,10 +146,10 @@ export function getRanking(data: DashboardData) {
 export async function getSummaryDataDashboard(data: DashboardData) {
   return {
     topCards: [
-    summaryToday(data), summaryMonth(data),summaryPending(data),summaryResolved(data)
+    summaryPending(data),summaryResolved(data),summaryAvgCloseTime(data)
     ],
     bottomCards: [
-    summaryWeek(data), summaryAvgCloseTime(data)
+    summaryToday(data),summaryWeek(data),summaryMonth(data)
     ],
     RankingCards: getRanking(data) 
   }

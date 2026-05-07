@@ -13,3 +13,4 @@ export default function AdminLayout({
 }) {
   return <AdminShell> <div className="admin-theme">{children}</div></AdminShell>;
 }
+
