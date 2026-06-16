@@ -1,0 +1,74 @@
+[
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟฟ้าแรงสูงระเบิด",
+    "score": 77.97,
+    "decision": "REVIEW",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 82.42,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟฟ้าแรงสูงระเบิด",
+    "score": 77.97,
+    "decision": "REVIEW",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 82.42,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟฟ้าแรงสูงระเบิด",
+    "score": 77.97,
+    "decision": "REVIEW",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 82.42,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟฟ้าแรงสูงระเบิด",
+    "score": 77.97,
+    "decision": "REVIEW",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 82.42,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟฟ้าแรงสูงระเบิด",
+    "score": 77.97,
+    "decision": "REVIEW",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 82.42,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟฟ้า",
+    "score": 77.97,
+    "decision": "REVIEW",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 82.42,
+      "label": "electric pole"
+    }
+  }
+]
