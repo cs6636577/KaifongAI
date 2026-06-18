@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile, File, Form, Request
 from pydantic import BaseModel
 from clip_service import predict_image, image_text_score
 

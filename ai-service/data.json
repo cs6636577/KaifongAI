@@ -70,5 +70,17 @@
       "confidence": 82.42,
       "label": "electric pole"
     }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟนะเบิด",
+    "score": 83.0,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 95.01,
+      "label": "electric pole"
+    }
   }
 ]
