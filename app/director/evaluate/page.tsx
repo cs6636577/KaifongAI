@@ -55,7 +55,7 @@ export default function Page() {
 
     if (activeTab === "pending") {
       result = result.filter(
-        (item) => item.status === "กำลังดำเนินการ"
+        (item) => item.status === "รอดำเนินการ"
       )
     }
 
