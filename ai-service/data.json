@@ -82,5 +82,350 @@
       "confidence": 95.01,
       "label": "electric pole"
     }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟนะเบิด",
+    "score": 82.73,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "การบริการเจ้าหน้าที่และธรรมาภิบาล",
+    "description": "เสาไฟนะเบิด",
+    "score": 54.15,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "เสาไฟนะเบิด",
+    "score": 82.73,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจร",
+    "score": 78.64,
+    "decision": "REVIEW",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจร",
+    "score": 87.73,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจรแล้วระเบิด",
+    "score": 92.73,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจรแล้วระเบิดทำให้ไฟกะพริบ",
+    "score": 95.73,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจรแล้วระเบิดทำให้ไฟกะพริบ",
+    "score": 97.73,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจรแล้วระเบิดทำให้ไฟกะพริบ",
+    "score": 97.73,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจร",
+    "score": 87.73,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 94.33,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจร",
+    "score": 88.0,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 95.01,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจรแล้วระเบิดทำให้ไฟกะพริบ",
+    "score": 96.0,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 95.01,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟลัดวงจร",
+    "score": 88.0,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 95.01,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟ",
+    "score": 83.0,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 95.01,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟดับ",
+    "score": 88.0,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 95.01,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟ",
+    "score": 83.0,
+    "decision": "ACCEPT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_LIGHT",
+      "confidence": 95.01,
+      "label": "electric pole"
+    }
+  },
+  {
+    "category": "โครงสร้างพื้นฐานและสาธารณูปโภค",
+    "description": "ไฟรั่ว",
+    "score": 56.0,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "category": "HEALTH",
+      "subcategory": "HEALTH_POLLUTION",
+      "confidence": 39.98,
+      "label": "wastewater"
+    }
+  },
+  {
+    "category": "สวัสดิการสังคมและพัฒนาชุมชน",
+    "description": "ไฟรั่ว",
+    "score": 46.0,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "category": "HEALTH",
+      "subcategory": "HEALTH_POLLUTION",
+      "confidence": 39.98,
+      "label": "wastewater"
+    }
+  },
+  {
+    "category": "สาธารณสุขและมลพิษ",
+    "description": "ไฟรั่ว",
+    "score": 45.32,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_DRAIN",
+      "confidence": 35.45,
+      "label": "drainage"
+    }
+  },
+  {
+    "category": "สาธารณสุขและมลพิษ",
+    "description": "ไฟรั่ว",
+    "score": 45.32,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_DRAIN",
+      "confidence": 35.45,
+      "label": "drainage"
+    }
+  },
+  {
+    "category": "สวัสดิการสังคมและพัฒนาชุมชน",
+    "description": "ไฟรั่ว",
+    "score": 45.32,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_DRAIN",
+      "confidence": 35.45,
+      "label": "drainage"
+    }
+  },
+  {
+    "category": "สวัสดิการสังคมและพัฒนาชุมชน",
+    "description": "ไฟรั่ว",
+    "score": 45.32,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "category": "INFRA",
+      "subcategory": "INFRA_DRAIN",
+      "confidence": 35.45,
+      "label": "drainage"
+    }
+  },
+  {
+    "category": "สวัสดิการสังคมและพัฒนาชุมชน",
+    "description": "ไฟรั่ว",
+    "score": 46.47,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "label": "water pipe leak",
+      "confidence": 59.18,
+      "category": "INFRA",
+      "subcategory": "WATER"
+    }
+  },
+  {
+    "category": "ความเป็นระเบียบเรียบร้อยและจราจร",
+    "description": "ไฟรั่ว",
+    "score": 46.47,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "label": "water pipe leak",
+      "confidence": 59.18,
+      "category": "INFRA",
+      "subcategory": "WATER"
+    }
+  },
+  {
+    "category": "ความเป็นระเบียบเรียบร้อยและจราจร",
+    "description": "ไฟรั่ว",
+    "score": 46.47,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "label": "water pipe leak",
+      "confidence": 59.18,
+      "category": "INFRA",
+      "subcategory": "WATER"
+    }
+  },
+  {
+    "category": "ความเป็นระเบียบเรียบร้อยและจราจร",
+    "description": "ไฟรั่ว",
+    "score": 50.12,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "label": "wastewater leak",
+      "confidence": 76.75,
+      "category": "HEALTH",
+      "subcategory": "WATER"
+    }
+  },
+  {
+    "category": "ความเป็นระเบียบเรียบร้อยและจราจร",
+    "description": "ไฟรั่ว",
+    "score": 50.51,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "label": "wastewater leak",
+      "confidence": 76.75,
+      "category": "HEALTH"
+    }
+  },
+  {
+    "category": "ความเป็นระเบียบเรียบร้อยและจราจร",
+    "description": "ไฟรั่ว",
+    "score": 47.18,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "label": "water pipe leak",
+      "confidence": 59.18,
+      "category": "INFRA"
+    }
+  },
+  {
+    "category": "ความเป็นระเบียบเรียบร้อยและจราจร",
+    "description": "ไฟรั่ว",
+    "score": 22.15,
+    "decision": "REJECT",
+    "ai_prediction": {
+      "label": "water pipe leak",
+      "confidence": 59.18,
+      "category": "INFRA"
+    }
   }
 ]

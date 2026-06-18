@@ -1,7 +1,9 @@
 from fastapi import FastAPI, UploadFile, File, Form, Request
 from pydantic import BaseModel
 from clip_service import predict_image, image_text_score
-
+from mappings import CATEGORY_TH
+from mappings import CATEGORY_TH_MAP
+from keywords import CATEGORY_KEYWORDS
 import os
 
 import json
@@ -42,36 +44,12 @@ class Report(BaseModel):
 
 
 # =========================
-# CATEGORY KEYWORDS
-# =========================
-CATEGORY_KEYWORDS = {
-    "INFRA": ["ไฟ", "เสาไฟ", "ไฟดับ", "น้ำ", "ท่อน้ำ", "ประปา", "ถนน", "หลุม"],
-    "ENV": ["ขยะ", "กลิ่น", "สกปรก"],
-    "HEALTH": ["ควัน", "มลพิษ", "ฝุ่น"],
-    "ORDER": ["จราจร", "รถจอด"]
-}
-
-# =========================
-# 🔥 ADDED: THAI → CODE MAPPING
-# =========================
-CATEGORY_TH_MAP = {
-    "โครงสร้างพื้นฐานและสาธารณูปโภค": "INFRA",
-    "สิ่งแวดล้อมและสุขาภิบาล": "ENV",
-    "สาธารณสุขและมลพิษ": "HEALTH",
-    "ความเป็นระเบียบเรียบร้อยและจราจร": "ORDER",
-    "สวัสดิการสังคมและพัฒนาชุมชน": "SOCIAL",
-    "การบริการเจ้าหน้าที่และธรรมาภิบาล": "GOV"
-}
-
-# =========================
 # 🔥 ADDED: CONVERTER FUNCTION
 # =========================
 def convert_category(category_th: str):
     return CATEGORY_TH_MAP.get(category_th, "UNKNOWN")
 
 
-# =========================
-# DESCRIPTION SCORE (0–20 smooth)
 # =========================
 def description_category_score(category, description):
 
@@ -82,9 +60,20 @@ def description_category_score(category, description):
 
     matched = [k for k in keywords if k in description]
 
-    ratio = len(matched) / len(keywords)
+    match_count = len(matched)
 
-    score = round(ratio * 20, 2)
+    if match_count >= 5:
+        score = 20
+    elif match_count >= 4:
+        score = 18
+    elif match_count >= 3:
+        score = 15
+    elif match_count >= 2:
+        score = 10
+    elif match_count >= 1:
+        score = 5
+    else:
+        score = 0
 
     return score, matched
 
@@ -152,11 +141,11 @@ def calculate_score(category, description, ai_result, image_path):
         print("🤖 KAIFONG AI SCORE ENGINE")
         print("=" * 50)
 
-        print(f"📂 Category      : {category}")
+        print(f"📂 Category      : {CATEGORY_TH.get(category, category)}")
         print(f"📝 Description   : {description}")
 
         print("\n🔍 AI ANALYSIS")
-        print(f"   Predicted     : {ai_result['category']}")
+        print(f"   Predicted     : {CATEGORY_TH.get(category, category)}")
         print(f"   Confidence    : {ai_result['confidence']:.2f}")
         print(f"   Keywords      : {', '.join(matched_words) if matched_words else '-'}")
 
